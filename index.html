@@ -211,13 +211,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 /* FORM FIELDS */
 .form-input-group {display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 5px;}
 .form-input-group input {width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 11px 13px; color: var(--text); font-size: 13px; font-family: 'Nunito', sans-serif; outline: none; transition: all 0.2s;}
-.form-input-group input.error-ring { border: 1px solid var(--coral); box-shadow: 0 0 10px var(--coral-bg);}
+.form-input-group input.error-ring { border: 1px solid var(--coral); }
 .form-input-group input:focus {border-color: var(--cyan);}
 .form-input-group input::placeholder {color: var(--text3);}
 .form-input-group .full-width {grid-column: 1 / -1;}
 
 textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:11px 13px;color:var(--text);font-size:13px;font-family:'Nunito',sans-serif;outline:none;resize:none;line-height:1.7;transition:all 0.2s;}
-textarea.error-ring { border: 1px solid var(--coral); box-shadow: 0 0 10px var(--coral-bg);}
+textarea.error-ring { border: 1px solid var(--coral); }
 textarea:focus{border-color:var(--cyan);outline:none;}
 textarea::placeholder{color:var(--text3);}
 
@@ -458,7 +458,7 @@ textarea::placeholder{color:var(--text3);}
         </div>
       </div>
  
-      <div class="invite-flow" id="send-form">
+      <div class="invite-flow" id="send-form-ui">
         <div class="card-label" style="margin-bottom:11px;">Who knows you well enough to be honest?</div>
         <div class="contacts-grid">
           <div class="contact-chip" onclick="toggleC(this,'Mom')"><div class="chip-av" style="background:var(--mint); color:var(--bg)">M</div>Mom</div>
@@ -471,13 +471,18 @@ textarea::placeholder{color:var(--text3);}
           <input type="email" id="new-ct" placeholder="Their Email" style="max-width:180px;"/>
           <button class="btn-add" onclick="addPerson()">Add</button>
         </div>
-        <button class="btn-full" id="send-btn" onclick="sendSparks()" disabled style="margin-top:16px;">Send my Spark requests via Email ✦</button>
+        
+        <!-- NEW SHARE BUTTONS -->
+        <div style="display:flex; gap:10px; margin-top:16px;">
+          <button class="btn-full" id="send-btn" onclick="sendSparks()" disabled style="flex:1;">Open Email App ✦</button>
+          <button class="btn-full" id="copy-btn" onclick="copyInviteLink()" style="flex:1; background: var(--violet); color: var(--text);">Copy Invite Link ✦</button>
+        </div>
       </div>
  
       <div class="success-wrap" id="send-success" style="display:none">
         <div class="success-icon">✦</div>
        <h3>Sparks prepared!</h3>
-        <p>If you entered valid email addresses, your default email client should have opened with a pre-filled message.</p>
+        <p>Your invite link is ready. Send it to your people and wait for the honest feedback to roll in.</p>
         <button class="btn btn-primary" onclick="show('s2-feedback');switchToInsights()">See my insights →</button>
       </div>
     </div>
@@ -498,7 +503,7 @@ textarea::placeholder{color:var(--text3);}
       </div>
       <div class="card">
         <div class="card-label">What they said</div>
-        <!-- This feed is now powered by localStorage -->
+        <!-- This feed is powered by localStorage -->
         <div id="dashboard-feed">
            <div id="empty-state" style="font-size:12px;color:var(--text3);text-align:center;padding:20px;">No responses yet. Send some sparks!</div>
         </div>
@@ -517,15 +522,10 @@ textarea::placeholder{color:var(--text3);}
     </div>
  
     <!-- 
-      TO MAKE THIS SEND TO YOUR REAL EMAIL:
-      1. Go to https://web3forms.com/ and click "Create your Access Key"
-      2. Paste your Access Key in the hidden input below.
-      3. Change the <form> tag to: <form action="https://api.web3forms.com/submit" method="POST" id="respond-form">
+      CONNECTED TO FORMSPREE URL 
+      Using fetch() so the user doesn't get redirected away from the page 
     -->
-
-    <form id="respond-form" novalidate> <!-- novalidate disables the buggy browser popup -->
-      
-      <!-- <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE"> -->
+    <form id="respond-form" action="https://formspree.io/f/xgodqnqw" method="POST" onsubmit="validateAndSubmit(event)" novalidate>
       
       <!-- Demographic Fields -->
       <div class="respond-q" style="background: var(--bg3); border-color: var(--cyan);">
@@ -559,8 +559,8 @@ textarea::placeholder{color:var(--text3);}
         <div id="q-error" class="error-text">Please answer all 3 questions.</div>
       </div>
       
-      <button type="button" class="btn-full" id="submit-btn" onclick="validateAndSubmit()">Submit my answers ✦</button>
-      <p style="text-align:center;font-size:11px;color:var(--text3);margin-top:12px;">Your details are tracked locally · No login needed</p>
+      <button type="submit" class="btn-full" id="submit-btn">Submit my answers ✦</button>
+      <p style="text-align:center;font-size:11px;color:var(--text3);margin-top:12px;">Data securely sent to <span class="dyn-firstname">Eshwar</span> · No login needed</p>
     </form>
  
     <div class="success-wrap" id="respond-success" style="display:none">
@@ -584,7 +584,7 @@ function show(id) {
  if(id==='s2-feedback') resetFeed();
 }
  
-function toast(msg,dur=2600){
+function toast(msg,dur=3000){
   const t=document.getElementById('toast');
   t.textContent=msg; t.classList.add('show');
  setTimeout(()=>t.classList.remove('show'),dur);
@@ -609,7 +609,7 @@ function updateNamesAcrossApp() {
   document.querySelectorAll('.dyn-initials').forEach(el => el.textContent = initials);
 }
  
-// Journal Logic omitted for brevity (same as before)
+// Journal Logic 
 function openComposer(){ document.getElementById('composer').style.display='block'; document.getElementById('etitle').focus(); }
 function closeComposer(){ document.getElementById('composer').style.display='none'; document.getElementById('etitle').value=''; document.getElementById('ebody').value=''; }
 function setEType(el){document.querySelectorAll('.etype').forEach(e=>e.classList.remove('active'));el.classList.add('active');}
@@ -667,24 +667,34 @@ function setFTab(el,id){
  document.getElementById('ft-insights').style.display=id==='ft-insights'?'block':'none';
 }
 
+function copyInviteLink() {
+  const pageUrl = window.location.href;
+  const message = `Hey! I'm collecting honest feedback to build my personal 'Spark' profile. It's 3 quick anonymous questions. Could you take 2 minutes to fill it out here? \n\n${pageUrl}`;
+  
+  navigator.clipboard.writeText(message).then(() => {
+    toast('✦ Invite link copied to clipboard! Paste it anywhere.');
+    document.getElementById('send-form-ui').style.display='none';
+    document.getElementById('send-success').style.display='block';
+  }).catch(err => {
+    toast('❌ Could not copy link. Try again.');
+  });
+}
+
 function sendSparks(){
-  // Extract real emails from the selection (looking for things in parentheses containing '@')
   const extractedEmails = Array.from(sel).map(item => {
     const match = item.match(/\(([^)]+)\)/);
     return match ? match[1] : '';
   }).filter(email => email.includes('@'));
 
-  // If there are real emails, generate a mailto link
   if(extractedEmails.length > 0) {
      const subject = encodeURIComponent("Can you help me build my Spark?");
-     // Using window.location.href to dynamically get the current URL of the page you are on
      const body = encodeURIComponent("Hey! I'm collecting feedback to build my personal Spark. It's 3 quick anonymous questions. Could you take 2 minutes to fill it out here: \n\n" + window.location.href);
      window.location.href = `mailto:?bcc=${extractedEmails.join(',')}&subject=${subject}&body=${body}`;
   } else {
-     toast("Note: You didn't provide valid email addresses, so no email client was opened.");
+     toast("Note: You didn't provide valid email addresses for the email app to use.");
   }
 
-  document.getElementById('send-form').style.display='none';
+  document.getElementById('send-form-ui').style.display='none';
   document.getElementById('send-success').style.display='block';
 }
 
@@ -694,23 +704,26 @@ function switchToInsights(){
  document.querySelectorAll('.ftab').forEach((t,i)=>t.classList.toggle('active',i===1));
 }
 function resetFeed(){
- document.getElementById('send-form').style.display='block';
+ document.getElementById('send-form-ui').style.display='block';
  document.getElementById('send-success').style.display='none';
  document.getElementById('ft-send').style.display='block';
  document.getElementById('ft-insights').style.display='none';
  document.querySelectorAll('.ftab').forEach((t,i)=>t.classList.toggle('active',i===0));
 }
 
-// --- DATA STORAGE & VALIDATION LOGIC ---
+// --- DATA SUBMISSION LOGIC (AJAX TO FORMSPREE) ---
+function validateAndSubmit(e) {
+  e.preventDefault(); // Stop the form from doing a hard page redirect
 
-// 1. Custom Validation to avoid the fixed-navbar glitch
-function validateAndSubmit() {
+  const form = document.getElementById('respond-form');
+  const btn = document.getElementById('submit-btn');
+
+  // Manual Validation
   const inputs = ['resp-name', 'resp-email', 'resp-city', 'resp-country', 'resp-work'];
   const textareas = ['ans-q1', 'ans-q2', 'ans-q3'];
   let isValid = true;
   let firstInvalid = null;
 
-  // Check Demo Info
   inputs.forEach(id => {
     const el = document.getElementById(id);
     if(!el.value.trim()) {
@@ -723,7 +736,6 @@ function validateAndSubmit() {
   });
   document.getElementById('demo-error').style.display = isValid ? 'none' : 'block';
 
-  // Check Textareas
   let qValid = true;
   textareas.forEach(id => {
     const el = document.getElementById(id);
@@ -738,39 +750,67 @@ function validateAndSubmit() {
   });
   document.getElementById('q-error').style.display = qValid ? 'none' : 'block';
 
-  // If missing fields, scroll smoothly to the first one with an offset for the navbar
+  // Smooth scroll to the error
   if(!isValid) {
      const y = firstInvalid.getBoundingClientRect().top + window.scrollY - 100;
      window.scrollTo({top: y, behavior: 'smooth'});
      return;
   }
 
-  // If valid, save data!
-  processLocalSubmission();
+  // Visual feedback while sending
+  btn.textContent = "Sending securely...";
+  btn.disabled = true;
+
+  const formData = new FormData(form);
+
+  // Send to Formspree silently in the background
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    if (response.ok) {
+      // Save a local copy for the dashboard visualization
+      saveLocalCopyForDashboard(formData);
+      
+      // Transition to Success Screen
+      document.getElementById('respond-form').style.display='none';
+      document.getElementById('respond-success').style.display='block';
+      toast('✦ Answers sent to email successfully!');
+    } else {
+      response.json().then(data => {
+        if (Object.hasOwn(data, 'errors')) {
+          toast(data["errors"].map(error => error["message"]).join(", "));
+        } else {
+          toast("Oops! There was a problem submitting your form");
+        }
+      });
+    }
+  }).catch(error => {
+    toast("Oops! There was a problem submitting your form");
+  }).finally(() => {
+     btn.textContent = "Submit my answers ✦";
+     btn.disabled = false;
+     form.reset();
+  });
 }
 
 // Clear error styling when user starts typing
 document.querySelectorAll('input, textarea').forEach(el => {
-  el.addEventListener('input', () => {
-     el.classList.remove('error-ring');
-  });
+  el.addEventListener('input', () => { el.classList.remove('error-ring'); });
 });
 
-function processLocalSubmission() {
-  const btn = document.getElementById('submit-btn');
-  btn.textContent = "Saving locally...";
-  btn.disabled = true;
+// Saves a local copy so your dashboard still looks cool and updates instantly
+function saveLocalCopyForDashboard(formData) {
+  const respName = formData.get('respondent_name').trim().split(' ')[0];
+  const q1 = formData.get('q1').trim();
+  const q2 = formData.get('q2').trim();
+  const q3 = formData.get('q3').trim();
 
-  // Extract Data
-  const respName = document.getElementById('resp-name').value.trim().split(' ')[0]; // Use first name
-  const q1 = document.getElementById('ans-q1').value.trim();
-  const q2 = document.getElementById('ans-q2').value.trim();
-  const q3 = document.getElementById('ans-q3').value.trim();
-
-  // Load existing data from Browser Local Storage
   const existingData = JSON.parse(localStorage.getItem('sparkFeedbackData') || '[]');
   
-  // Add new response
   existingData.push({
       name: respName,
       strength: q1,
@@ -779,60 +819,32 @@ function processLocalSubmission() {
       date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
   });
 
-  // Save back to Local Storage
   localStorage.setItem('sparkFeedbackData', JSON.stringify(existingData));
-
-  setTimeout(() => {
-    // Reload the dashboard feed instantly
-    renderDashboardFeed();
-    
-    // UI Transition
-    document.getElementById('respond-form').style.display='none';
-    document.getElementById('respond-success').style.display='block';
-    
-    toast('✦ Answers saved to your dashboard!');
-    btn.textContent = "Submit my answers ✦";
-    btn.disabled = false;
-    document.getElementById('respond-form').reset();
-  }, 500);
+  renderDashboardFeed();
 }
 
-// Function to pull data from localStorage and display it
 function renderDashboardFeed() {
    const data = JSON.parse(localStorage.getItem('sparkFeedbackData') || '[]');
    const feed = document.getElementById('dashboard-feed');
    
-   // Update Stats
-   document.getElementById('stat-responses').textContent = data.length * 3; // 3 answers per person
+   document.getElementById('stat-responses').textContent = data.length * 3;
    document.getElementById('stat-people').textContent = data.length;
 
-   if(data.length === 0) return; // Keep empty state
+   if(data.length === 0) return;
 
-   feed.innerHTML = ''; // Clear feed
-
-   // Render backwards so newest is on top
+   feed.innerHTML = '';
    for (let i = data.length - 1; i >= 0; i--) {
       const resp = data[i];
-      
-      // Render Strength
-      if(resp.strength) {
-         feed.innerHTML += `<div class="resp-card"><div class="resp-top"><span class="tag-pill pill-mint" style="font-size:10px;">🌟 Strength</span><span class="resp-from">From ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.strength}</div></div>`;
-      }
-      // Render Growth
-      if(resp.growth) {
-         feed.innerHTML += `<div class="resp-card"><div class="resp-top"><span class="tag-pill pill-cyan" style="font-size:10px;">🌱 Growth</span><span class="resp-from">From ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.growth}</div></div>`;
-      }
-      // Render Zone
-      if(resp.zone) {
-         feed.innerHTML += `<div class="resp-card"><div class="resp-top"><span class="tag-pill pill-sky" style="font-size:10px;">⚡ Your zone</span><span class="resp-from">From ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.zone}</div></div>`;
-      }
+      if(resp.strength) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><span class="tag-pill pill-mint" style="font-size:10px;">🌟 Strength</span><span class="resp-from">From ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.strength}</div></div>`;
+      if(resp.growth) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><span class="tag-pill pill-cyan" style="font-size:10px;">🌱 Growth</span><span class="resp-from">From ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.growth}</div></div>`;
+      if(resp.zone) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><span class="tag-pill pill-sky" style="font-size:10px;">⚡ Your zone</span><span class="resp-from">From ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.zone}</div></div>`;
    }
 }
 
 // Initialize things on page load
 window.onload = function() {
     updateNamesAcrossApp();
-    renderDashboardFeed(); // Load saved data immediately
+    renderDashboardFeed(); 
 }
 </script>
 </body>
