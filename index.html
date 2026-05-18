@@ -63,9 +63,9 @@ header.top-bar {
   display:flex;align-items:center;justify-content:space-between;
   padding:16px 32px;
   background: linear-gradient(to bottom, rgba(2, 6, 23, 0.9) 0%, rgba(2, 6, 23, 0) 100%);
-  pointer-events: none; /* Let clicks pass through empty areas */
+  pointer-events: none;
 }
-header.top-bar > * { pointer-events: auto; } /* Re-enable clicks on items */
+header.top-bar > * { pointer-events: auto; }
 
 .logo{font-family:'Fraunces',serif;font-size:24px;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;text-transform:uppercase;letter-spacing:1px;text-shadow: 0 4px 12px rgba(0,0,0,0.5);}
 .logo span{color:var(--cyan);}
@@ -75,7 +75,7 @@ header.top-bar > * { pointer-events: auto; } /* Re-enable clicks on items */
 .avatar-nav{width:40px;height:40px;border-radius:50%;background:rgba(15, 23, 42, 0.8);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--cyan);cursor:pointer;transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(8px);}
 .avatar-nav:hover{transform:scale(1.1) translateY(-2px); box-shadow: 0 8px 20px rgba(0, 229, 255, 0.3);}
 
-/* FLOATING GLASS NAVIGATION (The Glossy Overhood) */
+/* FLOATING GLASS NAVIGATION */
 .floating-nav {
   position: fixed;
   bottom: 32px;
@@ -86,13 +86,11 @@ header.top-bar > * { pointer-events: auto; } /* Re-enable clicks on items */
   gap: 8px;
   padding: 8px;
   border-radius: 100px;
-  
-  /* The Glass Glossy Effect */
   background: linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.7) 100%);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Top highlight rim */
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -141,13 +139,13 @@ header.top-bar > * { pointer-events: auto; } /* Re-enable clicks on items */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px) scale(0.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 
 /* SHARED UTILS */
-.wrap{max-width:720px;margin:0 auto;padding:24px 24px 120px;} /* Extra padding bottom for floating nav */
+.wrap{max-width:720px;margin:0 auto;padding:24px 24px 120px;}
 .section-tag{font-size:11px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;color:var(--cyan);}
 .page-title{font-family:'Fraunces',serif;font-size:2.2rem;letter-spacing:-0.02em;margin-bottom:8px;text-transform:uppercase;}
 .page-sub{font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:32px;}
 
 /* GLOSSY CARDS */
-.card{
+.card, .respond-q {
   background: linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
   border:1px solid var(--border);
   border-radius:var(--r);
@@ -157,12 +155,12 @@ header.top-bar > * { pointer-events: auto; } /* Re-enable clicks on items */
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
-.card:hover{
+.card:hover, .respond-q:hover {
   border-color: var(--border-h);
   transform: translateY(-3px);
   box-shadow: 0 15px 40px rgba(0, 229, 255, 0.1);
 }
-.card+.card{margin-top:16px;}
+.card+.card, .respond-q+.respond-q {margin-top:16px;}
 .card-label{font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
 
 /* BUTTONS */
@@ -184,7 +182,21 @@ header.top-bar > * { pointer-events: auto; } /* Re-enable clicks on items */
 .btn-full{width:100%;padding:16px;background: var(--cyan);color:var(--bg);border:none;border-radius:var(--r);font-size:15px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);margin-top:8px;}
 .btn-full:hover{background: var(--cyan-l);transform:translateY(-3px);box-shadow: 0 8px 25px rgba(0, 229, 255, 0.3);}
 .btn-full:disabled{opacity:0.4;pointer-events:none;}
- 
+
+/* FORMS / INPUTS */
+.form-input-group {display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px;}
+.form-input-group input {width: 100%; background: rgba(2,6,23,0.5); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 16px; color: var(--text); font-size: 14px; font-family: 'Nunito', sans-serif; outline: none; transition: all 0.3s; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);}
+.form-input-group input.error-ring { border: 1px solid var(--coral); box-shadow: 0 0 0 3px var(--coral-bg), inset 0 2px 4px rgba(0,0,0,0.2);}
+.form-input-group input:focus {border-color: var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg), inset 0 2px 4px rgba(0,0,0,0.2); transform:translateY(-2px);}
+.form-input-group input::placeholder {color: var(--text3);}
+.form-input-group .full-width {grid-column: 1 / -1;}
+
+textarea{width:100%;background:rgba(2,6,23,0.5);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px;color:var(--text);font-size:14px;font-family:'Nunito',sans-serif;outline:none;resize:vertical;line-height:1.7;transition:all 0.3s;min-height:120px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);}
+textarea.error-ring { border: 1px solid var(--coral); box-shadow: 0 0 0 3px var(--coral-bg), inset 0 2px 4px rgba(0,0,0,0.2); }
+textarea:focus{border-color:var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg), inset 0 2px 4px rgba(0,0,0,0.2); transform:translateY(-2px);}
+textarea::placeholder{color:var(--text3);}
+.error-text { color: var(--coral); font-size: 12px; font-weight: 700; margin-top: 8px; display: none; animation: fadeUp 0.3s ease;}
+
 /* LANDING / HOME PAGE */
 .hero{text-align:center;padding:40px 24px 60px;max-width:700px;margin:0 auto;}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0, 229, 255, 0.05);border:1px solid var(--border-h);border-radius:100px;padding:8px 16px;font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:24px;text-transform:uppercase;letter-spacing:0.05em;backdrop-filter: blur(8px);}
@@ -209,7 +221,7 @@ header.top-bar > * { pointer-events: auto; } /* Re-enable clicks on items */
 .mc-features{display:flex;flex-direction:column;gap:8px;}
 .mc-feat{font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px;font-weight:600;}
 .mc-feat::before{content:'✦';font-size:10px;color:var(--cyan);}
-.home-foot{text-align:center;padding:0 0 100px;font-size:13px;color:var(--text3);font-weight:600;letter-spacing:0.05em;}
+.home-foot{text-align:center;padding:0 0 40px;font-size:13px;color:var(--text3);font-weight:600;letter-spacing:0.05em;}
  
 /* PROFILE SCREEN */
 .profile-hero{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;}
@@ -301,20 +313,14 @@ header.top-bar > * { pointer-events: auto; } /* Re-enable clicks on items */
 .resp-from{font-size:12px;color:var(--text3);font-weight:700;}
 .resp-text{font-size:15px;color:var(--text);line-height:1.7; white-space: pre-wrap; font-style: italic;}
  
-/* FORMS */
-.form-input-group {display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px;}
-.form-input-group input {width: 100%; background: rgba(2,6,23,0.5); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 16px; color: var(--text); font-size: 14px; font-family: 'Nunito', sans-serif; outline: none; transition: all 0.3s; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);}
-.form-input-group input.error-ring { border: 1px solid var(--coral); box-shadow: 0 0 0 3px var(--coral-bg), inset 0 2px 4px rgba(0,0,0,0.2);}
-.form-input-group input:focus {border-color: var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg), inset 0 2px 4px rgba(0,0,0,0.2); transform:translateY(-2px);}
-.form-input-group input::placeholder {color: var(--text3);}
-.form-input-group .full-width {grid-column: 1 / -1;}
+/* RESPONDENT APP VIEW */
+.respond-hero{text-align:center;margin-bottom:32px;}
+.respond-avatar{width:80px;height:80px;border-radius:50%;background:rgba(15,23,42,0.8);border: 3px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:28px;color:var(--cyan);margin:0 auto 16px;box-shadow:0 0 20px var(--cyan-bg);backdrop-filter: blur(10px);}
+.respond-hero h2{font-family:'Fraunces',serif;font-size:1.8rem;letter-spacing:-0.02em;margin-bottom:8px;text-transform:uppercase;}
+.respond-hero p{font-size:15px;color:var(--text2);line-height:1.7;max-width:440px;margin:0 auto;}
+.rq-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;}
+.rq-text{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:16px;font-weight:600;}
 
-textarea{width:100%;background:rgba(2,6,23,0.5);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px;color:var(--text);font-size:14px;font-family:'Nunito',sans-serif;outline:none;resize:vertical;line-height:1.7;transition:all 0.3s;min-height:120px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);}
-textarea.error-ring { border: 1px solid var(--coral); box-shadow: 0 0 0 3px var(--coral-bg), inset 0 2px 4px rgba(0,0,0,0.2); }
-textarea:focus{border-color:var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg), inset 0 2px 4px rgba(0,0,0,0.2); transform:translateY(-2px);}
-textarea::placeholder{color:var(--text3);}
-.error-text { color: var(--coral); font-size: 12px; font-weight: 700; margin-top: 8px; display: none; animation: fadeUp 0.3s ease;}
- 
 /* SUCCESS STATES */
 .success-wrap{text-align:center;padding:80px 24px;animation:fadeUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
 .success-icon{font-size:72px;margin-bottom:32px;color:var(--cyan);filter:drop-shadow(0 0 25px var(--cyan-bg)); animation: pulse 2s infinite alternate;}
@@ -367,7 +373,11 @@ textarea::placeholder{color:var(--text3);}
   </button>
   <button class="f-tab" onclick="show('s2-feedback')">
     <span class="icon">🪞</span>
-    <span class="t-text">Feedback</span>
+    <span class="t-text">Insights</span>
+  </button>
+  <button class="f-tab" onclick="show('respond')" style="color:var(--cyan);">
+    <span class="icon">💌</span>
+    <span class="t-text">Respond</span>
   </button>
 </nav>
  
@@ -620,6 +630,62 @@ textarea::placeholder{color:var(--text3);}
   </div>
 </div>
  
+<!-- ═══ RESPONDENT (GUEST) VIEW ═══ -->
+<div class="screen" id="screen-respond">
+  <div class="wrap" style="max-width:600px;">
+    <div class="respond-hero">
+      <div class="respond-avatar dyn-initials">E</div>
+      <h2><span class="dyn-firstname" style="text-transform:uppercase;">ESHWAR</span>'S SPARK PROTOCOL</h2>
+      <p>You have been invited to provide anonymous feedback. Your radical candor is required. This data goes directly to <span class="dyn-firstname">Eshwar</span>'s private dashboard.</p>
+    </div>
+ 
+    <form id="respond-form" action="https://formspree.io/f/xgodqnqw" method="POST" onsubmit="validateAndSubmit(event)" novalidate>
+      
+      <!-- Meta Details -->
+      <div class="respond-q" style="border-color: var(--cyan);">
+        <div class="rq-label ql2">Submitter Metadata</div>
+        <div class="rq-text">Identify yourself to help <span class="dyn-firstname">Eshwar</span> contextualize this data (your specific answers remain unlinked and clustered).</div>
+        <div class="form-input-group">
+          <input type="text" id="resp-name" name="respondent_name" placeholder="Full Name *">
+          <input type="email" id="resp-email" name="respondent_email" placeholder="Email Address *">
+          <input type="text" id="resp-city" name="respondent_city" placeholder="Location *">
+          <input type="text" id="resp-country" name="respondent_country" placeholder="Relation *">
+          <input class="full-width" id="resp-work" type="text" name="respondent_workplace" placeholder="Current Organization / Affiliation *">
+        </div>
+        <div id="demo-error" class="error-text">Incomplete metadata fields detected.</div>
+      </div>
+
+      <!-- Protocol Questions -->
+      <div class="respond-q">
+        <div class="rq-label ql1">Vector 1 · Hidden Strengths</div>
+        <div class="rq-text">"What is a genuine strength you've observed in <span class="dyn-firstname">Eshwar</span> that he might underappreciate?"</div>
+        <textarea id="ans-q1" name="q1" placeholder="Provide specific examples... *"></textarea>
+      </div>
+      <div class="respond-q">
+        <div class="rq-label ql2">Vector 2 · Growth Opportunities</div>
+        <div class="rq-text">"Where does <span class="dyn-firstname">Eshwar</span> have the highest leverage for improvement?"</div>
+        <textarea id="ans-q2" name="q2" placeholder="Maintain constructive intent... *"></textarea>
+      </div>
+      <div class="respond-q">
+        <div class="rq-label ql3">Vector 3 · Flow State</div>
+        <div class="rq-text">"When is <span class="dyn-firstname">Eshwar</span> operating in his absolute optimal zone?"</div>
+        <textarea id="ans-q3" name="q3" placeholder="Describe the environment or context... *"></textarea>
+        <div id="q-error" class="error-text">All vectors require input.</div>
+      </div>
+      
+      <button type="submit" class="btn-full" id="submit-btn" style="padding: 20px; font-size: 16px;">Transmit Protocol ✦</button>
+      <p style="text-align:center;font-size:12px;color:var(--text3);margin-top:16px;">End-to-end encrypted · Zero auth required</p>
+    </form>
+ 
+    <div class="success-wrap" id="respond-success" style="display:none">
+      <div class="success-icon">✦</div>
+      <h3>Transmission Complete.</h3>
+      <p>Data successfully routed to <span class="dyn-firstname">Eshwar</span>'s matrix. Your contribution is valuable.</p>
+      <button class="btn btn-outline" style="margin-top:24px;" onclick="show('home')">Return to System Home</button>
+    </div>
+  </div>
+</div>
+ 
 <script>
 // System Initialization
 document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
@@ -628,7 +694,7 @@ const sel = new Set();
 function show(id) {
  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
  document.getElementById('screen-'+id).classList.add('active');
-  const map={home:0,'s1-profile':1,'s1-journal':2,'s2-feedback':3};
+  const map={home:0,'s1-profile':1,'s1-journal':2,'s2-feedback':3,respond:4};
  document.querySelectorAll('.f-tab').forEach((t,i)=>t.classList.toggle('active',i===map[id]));
  window.scrollTo({top: 0, behavior: 'smooth'});
  if(id==='s2-feedback') resetFeed();
@@ -761,7 +827,110 @@ function resetFeed(){
  document.querySelectorAll('.ftab').forEach((t,i)=>t.classList.toggle('active',i===0));
 }
 
-// Render Dashboard Data
+// Data Handling (Forms & LocalStorage)
+function validateAndSubmit(e) {
+  e.preventDefault(); 
+
+  const form = document.getElementById('respond-form');
+  const btn = document.getElementById('submit-btn');
+
+  const inputs = ['resp-name', 'resp-email', 'resp-city', 'resp-country', 'resp-work'];
+  const textareas = ['ans-q1', 'ans-q2', 'ans-q3'];
+  let isValid = true;
+  let firstInvalid = null;
+
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if(!el.value.trim()) {
+      el.classList.add('error-ring');
+      isValid = false;
+      if(!firstInvalid) firstInvalid = el;
+    } else {
+      el.classList.remove('error-ring');
+    }
+  });
+  document.getElementById('demo-error').style.display = isValid ? 'none' : 'block';
+
+  let qValid = true;
+  textareas.forEach(id => {
+    const el = document.getElementById(id);
+    if(!el.value.trim()) {
+      el.classList.add('error-ring');
+      qValid = false;
+      isValid = false;
+      if(!firstInvalid) firstInvalid = el;
+    } else {
+      el.classList.remove('error-ring');
+    }
+  });
+  document.getElementById('q-error').style.display = qValid ? 'none' : 'block';
+
+  if(!isValid) {
+     const y = firstInvalid.getBoundingClientRect().top + window.scrollY - 100;
+     window.scrollTo({top: y, behavior: 'smooth'});
+     return;
+  }
+
+  btn.textContent = "Transmitting...";
+  btn.disabled = true;
+
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    if (response.ok) {
+      saveLocalCopyForDashboard(formData);
+      
+      document.getElementById('respond-form').style.display='none';
+      document.getElementById('respond-success').style.display='block';
+      toast('✦ Protocol transmitted successfully.');
+    } else {
+      response.json().then(data => {
+        if (Object.hasOwn(data, 'errors')) {
+          toast(data["errors"].map(error => error["message"]).join(", "));
+        } else {
+          toast("System Error during transmission.");
+        }
+      });
+    }
+  }).catch(error => {
+    toast("System Error during transmission.");
+  }).finally(() => {
+     btn.textContent = "Transmit Protocol ✦";
+     btn.disabled = false;
+     form.reset();
+  });
+}
+
+document.querySelectorAll('input, textarea').forEach(el => {
+  el.addEventListener('input', () => { el.classList.remove('error-ring'); });
+});
+
+function saveLocalCopyForDashboard(formData) {
+  const respName = formData.get('respondent_name').trim().split(' ')[0];
+  const q1 = formData.get('q1').trim();
+  const q2 = formData.get('q2').trim();
+  const q3 = formData.get('q3').trim();
+
+  const existingData = JSON.parse(localStorage.getItem('sparkDataMatrix') || '[]');
+  
+  existingData.push({
+      name: respName,
+      strength: q1,
+      growth: q2,
+      zone: q3,
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+  });
+
+  localStorage.setItem('sparkDataMatrix', JSON.stringify(existingData));
+  renderDashboardFeed();
+}
+
 function renderDashboardFeed() {
    const data = JSON.parse(localStorage.getItem('sparkDataMatrix') || '[]');
    const feed = document.getElementById('dashboard-feed');
