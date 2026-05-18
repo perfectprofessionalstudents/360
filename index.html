@@ -1,846 +1,598 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spark ✦ — Know yourself. See yourself.</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root {
-  /* Electric Cyan & Deep Blue Theme Colors */
-  --cyan: #00E5FF;
-  --cyan-d: #00B8CC;
-  --cyan-l: #80F2FF;
-  --cyan-bg: rgba(0, 229, 255, 0.1);
-  
-  --mint: #00FFAA; --mint-bg: rgba(0, 255, 170, 0.1);
-  --violet: #8B5CF6; --violet-bg: rgba(139, 92, 246, 0.1); 
-  --coral: #FF3366; --coral-bg: rgba(255, 51, 102, 0.1);
-  --sky: #4DABF7; --sky-bg: rgba(77, 171, 247, 0.1);
-  
-  /* Deep Space Backgrounds */
-  --bg: #020617; 
-  --bg2: #0F172A; 
-  --bg3: rgba(15, 23, 42, 0.85); 
-  --bg4: #1E293B;
-  
-  /* Clean Borders */
-  --border: rgba(0, 229, 255, 0.15); 
-  --border-h: rgba(0, 229, 255, 0.4);
-  
-  /* High Contrast Dark Mode Text */
-  --text: #FFFFFF; 
-  --text2: rgba(255, 255, 255, 0.75); 
-  --text3: rgba(255, 255, 255, 0.45);
-  
-  /* Solid Cards */
-  --white: rgba(15, 23, 42, 0.7); 
-  --r: 18px; --r-sm: 12px;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Professional | A Learning Portal by TVRLS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #ffffff;
+            --bg-light: #f4f7f6;
+            --mustard-light: #f59e0b;
+            --mustard-dark: #d97706;
+            --grey-light: #9ca3af;
+            --grey-mid: #6b7280;
+            --grey-dark: #4b5563;
+            --grey-darker: #374151;
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
 
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+        * {
+            box-sizing: border-box;
+        }
 
-/* STARRY BACKGROUND */
-body::before{
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
-  background:radial-gradient(circle at center, #0f172a 0%, #020617 100%);
-}
-body::after {
-  content: ""; position: fixed; top: 0; left: 0; width: 1px; height: 1px;
-  background: transparent; z-index: 0; pointer-events: none;
-  box-shadow: 10vw 20vh 1px var(--text3), 20vw 80vh 1px var(--text3), 80vw 10vh 1px var(--text3), 90vw 90vh 1px var(--text3), 50vw 50vh 1px var(--text3), 30vw 30vh 1px var(--text3), 70vw 70vh 1px var(--text3);
-  animation: starsBlink 4s infinite alternate;
-}
-@keyframes starsBlink {
-  from { opacity: 0.3; }
-  to { opacity: 0.8; }
-}
- 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:13px 28px;background:var(--bg3);border-bottom:1px solid var(--border);backdrop-filter: blur(12px);-webkit-backdrop-filter: blur(12px);}
-.logo{font-family:'Fraunces',serif;font-size:22px;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;text-transform:uppercase;letter-spacing:1px;}
-.logo span{color:var(--cyan);}
-.logo-star{color:var(--cyan);font-size:14px;animation:spin 8s linear infinite;display:inline-block;}
-@keyframes spin{to{transform:rotate(360deg);}}
-.nav-center{display:flex;gap:4px;background:var(--bg2);border-radius:100px;padding:5px;border:1px solid var(--border);}
-.ntab{padding:8px 18px;border-radius:100px;font-size:13px;font-weight:700;cursor:pointer;color:var(--text2);border:none;background:none;transition:all 0.25s cubic-bezier(0.4, 0, 0.2, 1);font-family:'Nunito',sans-serif;}
-.ntab.active{background:var(--cyan);color:var(--bg);box-shadow: 0 2px 10px rgba(0, 229, 255, 0.2);}
-.ntab:hover:not(.active){color:var(--cyan);background:var(--cyan-bg);}
-.avatar-nav{width:36px;height:36px;border-radius:50%;background:var(--bg2);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--cyan);cursor:pointer;transition:transform 0.2s;}
-.avatar-nav:hover{transform:scale(1.05);}
- 
-/* SCREENS */
-.screen{display:none;padding-top:74px;min-height:100vh;animation:fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);position:relative;z-index:1;}
-.screen.active{display:block;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
- 
-/* SHARED UTILS */
-.wrap{max-width:720px;margin:0 auto;padding:40px 24px;}
-.section-tag{font-size:11px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;color:var(--cyan);}
-.page-title{font-family:'Fraunces',serif;font-size:2.2rem;letter-spacing:-0.02em;margin-bottom:8px;text-transform:uppercase;}
-.page-sub{font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:32px;}
-.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px;backdrop-filter: blur(10px); transition: border-color 0.3s;}
-.card:hover{border-color: var(--border-h);}
-.card+.card{margin-top:16px;}
-.card-label{font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:'Nunito',sans-serif;transition:all 0.25s;}
-.btn-primary{background: var(--cyan);color:var(--bg);box-shadow: 0 4px 15px rgba(0, 229, 255, 0.15);}
-.btn-primary:hover{background: var(--cyan-l);transform:translateY(-2px);box-shadow: 0 6px 20px rgba(0, 229, 255, 0.25);}
-.btn-outline{background:transparent;color:var(--cyan);border:2px solid var(--cyan);}
-.btn-outline:hover{background:var(--cyan-bg);transform:translateY(-2px);}
-.btn-sm{padding:8px 16px;font-size:13px;}
-.tag-pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:5px 12px;border-radius:100px;}
-.pill-cyan{background:var(--cyan-bg);color:var(--cyan);border:1px solid var(--border-h);}
-.pill-mint{background:var(--mint-bg);color:var(--mint);border:1px solid rgba(0, 255, 170, 0.3);}
-.pill-violet{background:var(--violet-bg);color:var(--violet);border:1px solid rgba(139, 92, 246, 0.3);}
-.pill-coral{background:var(--coral-bg);color:var(--coral);border:1px solid rgba(255, 51, 102, 0.3);}
-.pill-sky{background:var(--sky-bg);color:var(--sky);border:1px solid rgba(77, 171, 247, 0.3);}
-.btn-full{width:100%;padding:16px;background: var(--cyan);color:var(--bg);border:none;border-radius:var(--r);font-size:15px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:all 0.2s;margin-top:8px;}
-.btn-full:hover{background: var(--cyan-l);transform:translateY(-2px);}
-.btn-full:disabled{opacity:0.4;pointer-events:none;}
- 
-/* LANDING / HOME PAGE */
-.hero{text-align:center;padding:80px 24px 60px;max-width:700px;margin:0 auto;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--cyan-bg);border:1px solid var(--border-h);border-radius:100px;padding:8px 16px;font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:24px;text-transform:uppercase;letter-spacing:0.05em;}
-.badge-blink{width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:blink 2s infinite;box-shadow: 0 0 10px var(--cyan);}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.5rem,6vw,4rem);line-height:1.05;letter-spacing:-0.03em;margin-bottom:20px;text-transform:uppercase;}
-.hero h1 em{color:var(--cyan);font-style:normal;}
-.hero p{font-size:16px;color:var(--text2);line-height:1.8;max-width:500px;margin:0 auto 36px;}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--grey-darker);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            /* Space for floating header */
+            padding-top: 80px; 
+        }
 
-/* PRODUCT MODULES (Home) */
-.module-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:880px;margin:0 auto 60px;padding:0 24px;}
-.module-card{border-radius:var(--r);padding:32px;cursor:pointer;transition:all 0.3s cubic-bezier(0.16, 1, 0.3, 1);border:1px solid var(--border);background:var(--white);position:relative;overflow:hidden;}
-.module-card::after{content:'→';position:absolute;top:32px;right:32px;font-size:24px;color:var(--border-h);transition:all 0.3s;font-family:sans-serif;}
-.module-card:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
-.module-card:hover::after{color:var(--cyan);transform:translateX(5px);}
-.mc-icon{font-size:40px;margin-bottom:16px;display:inline-block;padding:12px;background:var(--bg2);border-radius:16px;border:1px solid var(--border);}
-.mc-num{font-size:11px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;}
-.module-card h3{font-family:'Fraunces',serif;font-size:1.6rem;margin-bottom:12px;letter-spacing:-0.02em;text-transform:uppercase;}
-.module-card p{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:20px;}
-.mc-features{display:flex;flex-direction:column;gap:8px;}
-.mc-feat{font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px;font-weight:600;}
-.mc-feat::before{content:'✦';font-size:10px;color:var(--cyan);}
-.home-foot{text-align:center;padding:0 0 48px;font-size:13px;color:var(--text3);font-weight:600;letter-spacing:0.05em;}
- 
-/* PROFILE SCREEN */
-.profile-hero{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;}
-.avatar-lg{width:88px;height:88px;border-radius:50%;background:var(--bg2);border:3px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:32px;color:var(--cyan);flex-shrink:0;box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);}
-.profile-name{font-family:'Fraunces',serif;font-size:2rem;letter-spacing:-0.02em;margin-bottom:6px;text-transform:uppercase;}
-.profile-bio-t{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:12px;max-width:500px;}
-.profile-tags{display:flex;flex-wrap:wrap;gap:8px;}
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.info-field label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);display:block;margin-bottom:8px;}
-.info-field input,.info-field textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 16px;color:var(--text);font-size:14px;font-family:'Nunito',sans-serif;outline:none;transition:all 0.25s;}
-.info-field input:focus,.info-field textarea:focus{border-color:var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg);}
-.info-field.full{grid-column:1/-1;}
- 
-/* JOURNAL SCREEN */
-.journal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;}
-.date-display{font-size:14px;color:var(--cyan);font-weight:700;}
-.entry-composer{background:var(--white);border:1px solid var(--cyan);border-radius:var(--r);padding:24px;margin-bottom:24px;box-shadow: 0 10px 30px rgba(0,0,0,0.3);}
-.entry-type-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
-.etype{padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--bg2);color:var(--text2);transition:all 0.2s;font-family:'Nunito',sans-serif;}
-.etype.active{border-color:var(--cyan);background:var(--cyan);color:var(--bg);}
-.entry-title-input{width:100%;background:transparent;border:none;outline:none;font-family:'Fraunces',serif;font-size:1.4rem;color:var(--text);margin-bottom:12px;}
-.entry-title-input::placeholder{color:var(--text3);}
-.entry-body{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px;color:var(--text);font-size:14px;font-family:'Nunito',sans-serif;outline:none;resize:vertical;line-height:1.8;transition:all 0.2s;min-height: 120px;}
-.entry-body:focus{border-color:var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg);}
-.entry-footer{display:flex;align-items:center;justify-content:space-between;margin-top:16px;flex-wrap:wrap;gap:12px;}
-.mood-row{display:flex;gap:6px;}
-.mood-btn{font-size:20px;cursor:pointer;padding:6px 8px;border-radius:10px;border:1px solid transparent;transition:all 0.2s;background:var(--bg2);}
-.mood-btn.selected,.mood-btn:hover{background:var(--cyan-bg);border-color:var(--cyan);transform:scale(1.1);}
-.journal-timeline{position:relative;padding-left:24px;margin-top:20px;}
-.journal-timeline::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:2px;background:var(--border);border-radius:2px;}
-.entry-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;margin-bottom:16px;margin-left:16px;position:relative;transition:all 0.25s;cursor:pointer;}
-.entry-card::before{content:'';position:absolute;left:-29px;top:24px;width:10px;height:10px;border-radius:50%;background:var(--cyan);border:3px solid var(--bg);box-shadow: 0 0 10px var(--cyan);}
-.entry-card:hover{border-color:var(--cyan);transform:translateX(4px);}
-.entry-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.entry-card-meta{display:flex;align-items:center;gap:10px;}
-.entry-date-sm{font-size:12px;color:var(--text3);font-weight:700;}
-.entry-mood{font-size:18px;background:var(--bg2);padding:4px;border-radius:8px;}
-.entry-title{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--text);margin-bottom:8px;text-transform:uppercase;}
-.entry-preview{font-size:14px;color:var(--text2);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
- 
-/* SECTION 2 — FEEDBACK */
-.feedback-tabs{display:flex;gap:6px;margin-bottom:28px;background:var(--bg3);padding:6px;border-radius:100px;width:fit-content;border:1px solid var(--border);}
-.ftab{padding:10px 24px;border-radius:100px;font-size:13px;font-weight:700;cursor:pointer;color:var(--text2);border:none;background:transparent;transition:all 0.2s;font-family:'Nunito',sans-serif;}
-.ftab.active{background:var(--cyan);color:var(--bg);box-shadow: 0 2px 8px rgba(0,229,255,0.2);}
-.q-showcase{display:flex;flex-direction:column;gap:12px;margin-bottom:28px;}
-.q-block{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;transition:all 0.2s;}
-.q-block:hover{border-color:var(--border-h);transform:translateY(-2px);}
-.q-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-.qi1{background:var(--mint-bg); border: 1px solid var(--mint);}
-.qi2{background:var(--cyan-bg); border: 1px solid var(--cyan);}
-.qi3{background:var(--sky-bg); border: 1px solid var(--sky);}
-.q-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;}
-.ql1{color:var(--mint);} .ql2{color:var(--cyan);} .ql3{color:var(--sky);}
-.q-text{font-size:14px;color:var(--text);line-height:1.6;margin-bottom:6px;font-weight:600;}
-.q-hint{font-size:12px;color:var(--text3);font-style:italic;}
-.invite-flow{background:var(--white);border:1px solid var(--cyan);border-radius:var(--r);padding:24px;margin-bottom:16px;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
-.contacts-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
-.contact-chip{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;color:var(--text2);}
-.contact-chip:hover,.contact-chip.on{background:var(--cyan-bg);border-color:var(--cyan);color:var(--cyan);}
-.chip-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--bg);flex-shrink:0;}
-.add-row{display:flex;gap:8px;}
-.add-row input{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 16px;font-size:14px;font-family:'Nunito',sans-serif;color:var(--text);outline:none;transition:all 0.2s;}
-.add-row input:focus{border-color:var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg);}
-.btn-add{padding:12px 20px;background:var(--bg2);color:var(--cyan);border:1px solid var(--cyan);border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;transition:all 0.2s;}
-.btn-add:hover{background:var(--cyan);color:var(--bg);}
-.selected-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
-.sel-chip{display:flex;align-items:center;gap:6px;background:var(--cyan);border:1px solid var(--cyan);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:800;color:var(--bg);}
-.sel-x{cursor:pointer;opacity:0.6;margin-left:4px;font-size:14px;transition:0.2s;}
-.sel-x:hover{opacity:1;transform:scale(1.2);}
-.insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
-.insight-box{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px;text-align:center;transition:0.3s;}
-.insight-box:hover{border-color:var(--cyan);transform:translateY(-2px);}
-.insight-num{font-family:'Fraunces',serif;font-size:2.5rem;color:var(--cyan);line-height:1;}
-.insight-lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-top:8px;}
-.theme-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
-.theme-name{font-size:13px;font-weight:700;width:90px;flex-shrink:0;}
-.theme-track{flex:1;height:10px;background:var(--bg2);border-radius:5px;overflow:hidden;border: 1px solid var(--border);}
-.theme-bar{height:100%;border-radius:5px;transition:width 1.5s cubic-bezier(.4,0,.2,1);}
-.theme-pct{font-size:13px;color:var(--text2);font-weight:800;width:35px;text-align:right;}
-.resp-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:20px;margin-bottom:12px;transition:0.2s;}
-.resp-card:hover{border-color:var(--border-h);}
-.resp-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;}
-.resp-from{font-size:12px;color:var(--text3);font-weight:700;}
-.resp-text{font-size:14px;color:var(--text);line-height:1.7; white-space: pre-wrap; font-style: italic;}
- 
-/* RESPONDENT APP VIEW */
-.respond-hero{text-align:center;margin-bottom:32px;}
-.respond-avatar{width:80px;height:80px;border-radius:50%;background:var(--bg2);border: 3px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:28px;color:var(--cyan);margin:0 auto 16px;box-shadow:0 0 20px var(--cyan-bg);}
-.respond-hero h2{font-family:'Fraunces',serif;font-size:1.8rem;letter-spacing:-0.02em;margin-bottom:8px;text-transform:uppercase;}
-.respond-hero p{font-size:15px;color:var(--text2);line-height:1.7;max-width:440px;margin:0 auto;}
-.respond-q{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:16px;}
-.rq-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;}
-.rq-text{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:16px;font-weight:600;}
+        /* Top Navigation - Floating & Glassy */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
-/* FORMS */
-.form-input-group {display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px;}
-.form-input-group input {width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 14px 16px; color: var(--text); font-size: 14px; font-family: 'Nunito', sans-serif; outline: none; transition: all 0.25s;}
-.form-input-group input.error-ring { border: 1px solid var(--coral); box-shadow: 0 0 0 3px var(--coral-bg);}
-.form-input-group input:focus {border-color: var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg);}
-.form-input-group input::placeholder {color: var(--text3);}
-.form-input-group .full-width {grid-column: 1 / -1;}
+        .logo-area { 
+            display: flex; 
+            flex-direction: column; 
+            cursor: pointer;
+        }
+        
+        .logo-title { 
+            font-size: 1.6rem; 
+            color: var(--grey-darker); 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-subtitle { 
+            font-size: 0.75rem; 
+            color: var(--grey-mid); 
+            font-weight: 600; 
+        }
 
-textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;color:var(--text);font-size:14px;font-family:'Nunito',sans-serif;outline:none;resize:vertical;line-height:1.7;transition:all 0.25s;min-height:100px;}
-textarea.error-ring { border: 1px solid var(--coral); box-shadow: 0 0 0 3px var(--coral-bg); }
-textarea:focus{border-color:var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg);}
-textarea::placeholder{color:var(--text3);}
-.error-text { color: var(--coral); font-size: 12px; font-weight: 700; margin-top: 8px; display: none; }
- 
-/* SUCCESS STATES */
-.success-wrap{text-align:center;padding:64px 24px;animation:fadeUp 0.4s ease;}
-.success-icon{font-size:64px;margin-bottom:24px;color:var(--cyan);filter:drop-shadow(0 0 20px var(--cyan-bg));}
-.success-wrap h3{font-family:'Fraunces',serif;font-size:2.2rem;margin-bottom:12px;text-transform:uppercase;}
-.success-wrap p{font-size:15px;color:var(--text2);line-height:1.8;max-width:400px;margin:0 auto 32px;}
- 
-/* TOAST */
-.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--cyan);color:var(--bg);border-radius:100px;padding:12px 28px;font-size:14px;font-weight:800;z-index:1000;transition:transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);box-shadow:0 10px 30px rgba(0,229,255,0.3);white-space:nowrap;}
-.toast.show{transform:translateX(-50%) translateY(0);}
- 
-@media(max-width:768px){
- .module-grid{grid-template-columns:1fr;}
- .nav-center{display:none;}
- .info-grid{grid-template-columns:1fr;}
- .form-input-group{grid-template-columns:1fr;}
- .insight-grid{grid-template-columns:1fr;}
-}
-</style>
+        /* Desktop Nav Links */
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--grey-darker);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--mustard-dark);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--mustard-dark);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .student-tag {
+            background: linear-gradient(135deg, var(--mustard-light), var(--mustard-dark));
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .student-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
+        }
+
+        /* Mobile Hamburger Button */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--grey-darker);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Banner */
+        .hero {
+            position: relative;
+            background-color: var(--grey-darker);
+            background-image: 
+                linear-gradient(115deg, var(--mustard-light) 0%, var(--mustard-light) 18%, transparent 18%),
+                linear-gradient(115deg, var(--mustard-dark) 0%, var(--mustard-dark) 32%, transparent 32%),
+                linear-gradient(115deg, var(--grey-light) 0%, var(--grey-light) 50%, transparent 50%),
+                linear-gradient(115deg, var(--grey-mid) 0%, var(--grey-mid) 68%, transparent 68%),
+                linear-gradient(115deg, var(--grey-dark) 0%, var(--grey-dark) 85%, transparent 85%);
+            padding: 120px 20px;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.3);
+        }
+        
+        .hero h1 { 
+            font-size: 3.5rem; 
+            letter-spacing: 2px; 
+            margin: 0; 
+            font-weight: 800; 
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.4);
+        }
+        
+        .hero p { 
+            font-size: 1.2rem; 
+            margin-top: 10px; 
+            font-weight: 400; 
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 1px 2px 5px rgba(0,0,0,0.4);
+        }
+
+        /* Intro Text Section */
+        .intro-section {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .intro-section h2 { color: var(--grey-darker); font-size: 2rem; margin-bottom: 10px; font-weight: 800;}
+        .intro-section .quote { color: var(--mustard-dark); font-weight: 800; text-transform: uppercase; margin-bottom: 20px; font-size: 1.2rem; letter-spacing: 1px;}
+        .intro-section .sub-quote { font-weight: 700; font-size: 1rem; margin-bottom: 25px; text-transform: uppercase; color: var(--grey-dark);}
+        
+        .custom-text-area {
+            font-size: 1.05rem; 
+            text-align: left; 
+            margin-bottom: 15px; 
+            color: #555; 
+            line-height: 1.8;
+            padding: 20px;
+            background: var(--white);
+            border-radius: 10px;
+            border-left: 4px solid var(--mustard-light);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        }
+
+        /* Course Grid */
+        .programs-container {
+            max-width: 1250px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255,255,255,0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            top: 0;
+        }
+
+        .card:hover {
+            top: -10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .card-img {
+            height: 240px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 4px solid var(--mustard-light);
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        /* Hide overflow so image zoom stays in card */
+        .card-img-wrapper {
+            overflow: hidden;
+            width: 100%;
+            height: 240px;
+        }
+
+        .card-content {
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            background: var(--white);
+            z-index: 2;
+        }
+
+        .card-content h3 {
+            color: var(--grey-darker);
+            font-size: 1.15rem;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+            font-weight: 800;
+            line-height: 1.4;
+        }
+
+        .cert-tag { font-size: 0.8rem; color: var(--grey-mid); margin-bottom: 15px; font-weight: 600;}
+        .sessions { font-weight: 600; font-size: 0.95rem; margin-bottom: 20px; color: var(--grey-dark); }
+
+        .pricing-area {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px dashed var(--grey-light);
+            transition: background 0.3s ease;
+        }
+
+        .card:hover .pricing-area {
+            background: #fffbeb;
+            border-color: var(--mustard-light);
+        }
+
+        .original-price { text-decoration: line-through; color: var(--grey-mid); font-size: 0.95rem; font-weight: 600;}
+        .student-price { font-size: 1.8rem; font-weight: 800; color: var(--mustard-dark); margin: 5px 0; }
+
+        .btn-group { display: flex; gap: 12px; margin-top: auto; justify-content: center; }
+        
+        .btn {
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            flex: 1;
+        }
+        
+        .btn-outline { 
+            border: 2px solid var(--grey-mid); 
+            color: var(--grey-dark); 
+            background: transparent; 
+        }
+        .btn-outline:hover { 
+            background: var(--grey-darker); 
+            color: var(--white); 
+            border-color: var(--grey-darker);
+            transform: translateY(-2px);
+        }
+        
+        .btn-solid { 
+            border: 2px solid var(--mustard-dark); 
+            background: var(--mustard-dark); 
+            color: var(--white); 
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.2);
+        }
+        .btn-solid:hover { 
+            background: #b45309; 
+            border-color: #b45309; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
+        }
+
+        footer {
+            background: var(--grey-darker);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.95rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 900px) {
+            .nav-links {
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                padding: 20px 0;
+                gap: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                /* Hidden by default on mobile */
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .student-tag {
+                display: none; /* Hide tag on very small screens to save header space */
+            }
+
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 0.9rem; }
+            
+            .programs-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
- 
-<div class="toast" id="toast">✦ Notification</div>
- 
-<!-- NAV -->
-<nav>
-  <a class="logo" onclick="show('home')">sp<span>ark</span><span class="logo-star">✦</span></a>
-  <div class="nav-center">
-    <button class="ntab active" onclick="show('home')">Dashboard</button>
-    <button class="ntab" onclick="show('s1-profile')">📖 Profile</button>
-    <button class="ntab" onclick="show('s1-journal')">✍️ Journal</button>
-    <button class="ntab" onclick="show('s2-feedback')">🪞 Feedback</button>
-  </div>
-  <div class="avatar-nav dyn-initials" onclick="show('s1-profile')">E</div>
-</nav>
- 
-<!-- ═══ HOME / DASHBOARD ═══ -->
-<div class="screen active" id="screen-home">
-  <div class="hero">
-    <div class="hero-badge"><div class="badge-blink"></div>Beta Access v1.0</div>
-    <h1>Know yourself.<br><em>See yourself.</em></h1>
-    <p>A private space to document your life, paired with a powerful tool to collect honest, anonymous perspectives from the people who know you best. Build your authentic portrait.</p>
-    <div class="hero-btns">
-      <button class="btn btn-primary" onclick="show('s1-profile')">Launch Workspace →</button>
-      <button class="btn btn-outline" onclick="show('respond')">View Guest Experience</button>
-    </div>
-  </div>
- 
-  <div class="module-grid">
-    <div class="module-card s1" onclick="show('s1-profile')">
-      <div class="mc-icon">📖</div>
-      <div class="mc-num">Module 1</div>
-      <h3>The Private Archive</h3>
-      <p>Your profile, your story, your daily journal. Document what happens, how you feel, and what matters in a beautifully structured environment.</p>
-      <div class="mc-features">
-        <div class="mc-feat">Living personal bio & identity tags</div>
-        <div class="mc-feat">Rich daily journal entries</div>
-        <div class="mc-feat">Emotion tracking & life timeline</div>
-      </div>
-    </div>
-    
-    <div class="module-card s2" onclick="show('s2-feedback')">
-      <div class="mc-icon">🪞</div>
-      <div class="mc-num">Module 2</div>
-      <h3>The 360° Mirror</h3>
-      <p>Send secure, frictionless requests to your inner circle. Collect profound, anonymous feedback that helps you understand how the world sees you.</p>
-      <div class="mc-features">
-        <div class="mc-feat">Zero-friction guest responding</div>
-        <div class="mc-feat">Anonymous honest feedback collection</div>
-        <div class="mc-feat">AI-clustered personality themes</div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="home-foot">Secure & Private · Your Data is Yours · Spark Inc.</div>
-</div>
- 
-<!-- ═══ SECTION 1 — PROFILE ═══ -->
-<div class="screen" id="screen-s1-profile">
-  <div class="wrap">
-    <div class="section-tag">Module 1 — The Archive</div>
-    <div class="page-title">Identity Profile</div>
-    <div class="page-sub">Establish the foundation of your Spark. Be radically honest here—this is your private baseline.</div>
- 
-    <div class="profile-hero">
-      <div class="avatar-lg dyn-initials">E</div>
-      <div style="flex:1">
-        <div class="profile-name dyn-fullname">Eshwar M</div>
-        <div class="profile-bio-t">Design student who loves visual storytelling, making people feel heard, and figuring out who I actually am.</div>
-        <div class="profile-tags">
-          <span class="tag-pill pill-cyan">UI/UX Design</span>
-          <span class="tag-pill pill-mint">Storytelling</span>
-          <span class="tag-pill pill-coral">Empathy</span>
-          <span class="tag-pill pill-sky">Art Direction</span>
-        </div>
-      </div>
-    </div>
- 
-    <div class="card">
-      <div class="card-label">Core Demographics</div>
-      <div class="info-grid">
-        <div class="info-field"><label>Full Name</label><input type="text" id="profile-name-input" value="Eshwar M" oninput="updateNamesAcrossApp()"/></div>
-        <div class="info-field"><label>Age</label><input type="text" value="21"/></div>
-        <div class="info-field"><label>Location</label><input type="text" value="Bengaluru, India"/></div>
-        <div class="info-field"><label>Current Focus</label><input type="text" value="Design student @ NIFT"/></div>
-        <div class="info-field full"><label>Personal Thesis</label>
-          <textarea rows="3">Design student who loves visual storytelling, making people feel heard, and figuring out who I actually am. Currently exploring branding and UX.</textarea></div>
-      </div>
-    </div>
- 
-    <div class="card">
-      <div class="card-label">Trajectory</div>
-      <div class="info-grid">
-        <div class="info-field"><label>Current Stack / Skills</label><input type="text" value="Figma, Illustration, Writing"/></div>
-        <div class="info-field"><label>Active Learning</label><input type="text" value="Motion design, Photography"/></div>
-        <div class="info-field full"><label>Long-term Reputation Goal</label>
-          <input type="text" value="A designer who tells real human stories through beautiful work"/></div>
-      </div>
-    </div>
- 
-    <div class="card">
-      <div class="card-label">Internal Compass</div>
-      <div class="info-grid">
-        <div class="info-field"><label>Defining Traits</label><input type="text" value="Curious, warm, overthinker"/></div>
-        <div class="info-field"><label>Energy Sources</label><input type="text" value="Creative problems, deep convos"/></div>
-        <div class="info-field full"><label>Active Area of Friction</label>
-          <input type="text" value="Asking for help instead of doing everything alone"/></div>
-      </div>
-    </div>
- 
-    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
-      <button class="btn btn-primary" onclick="toast('✦ Identity Profile synced successfully.')">Sync Profile</button>
-      <button class="btn btn-outline" onclick="show('s1-journal')">Open Journal →</button>
-    </div>
-  </div>
-</div>
- 
-<!-- ═══ SECTION 1 — JOURNAL ═══ -->
-<div class="screen" id="screen-s1-journal">
-  <div class="wrap">
-    <div class="section-tag">Module 1 — The Archive</div>
-    <div class="journal-header">
-      <div>
-        <div class="page-title">Life Journal</div>
-        <div class="date-display" id="current-date">Loading date...</div>
-      </div>
-      <button class="btn btn-primary" onclick="openComposer()">+ Draft Entry</button>
-    </div>
-    <div class="page-sub" style="margin-top:6px;">Record events, process emotions, and track your evolution over time.</div>
- 
-    <!-- COMPOSER -->
-    <div class="entry-composer" id="composer" style="display:none">
-      <div class="entry-type-tabs">
-        <button class="etype active" onclick="setEType(this)">📅 Event</button>
-        <button class="etype" onclick="setEType(this)">💭 Reflection</button>
-        <button class="etype" onclick="setEType(this)">🎯 Win</button>
-        <button class="etype" onclick="setEType(this)">😔 Friction</button>
-        <button class="etype" onclick="setEType(this)">💡 Insight</button>
-      </div>
-      <input class="entry-title-input" id="etitle" type="text" placeholder="Entry title..."/>
-      <textarea class="entry-body" id="ebody" placeholder="Document the moment. Be specific and honest."></textarea>
-      <div class="entry-footer">
-        <div>
-          <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-bottom:8px;">Emotional State</div>
-          <div class="mood-row">
-            <button class="mood-btn" onclick="setMood(this)">🟢</button>
-            <button class="mood-btn" onclick="setMood(this)">🟡</button>
-            <button class="mood-btn" onclick="setMood(this)">🟠</button>
-            <button class="mood-btn" onclick="setMood(this)">🔴</button>
-            <button class="mood-btn" onclick="setMood(this)">🔵</button>
-          </div>
-        </div>
-        <div style="display:flex;gap:8px;">
-          <button class="btn btn-outline btn-sm" onclick="closeComposer()">Discard</button>
-          <button class="btn btn-primary btn-sm" onclick="saveEntry()">Publish ✦</button>
-        </div>
-      </div>
-    </div>
- 
-    <!-- TIMELINE -->
-    <div class="journal-timeline" id="entries-list">
-      <div class="entry-card">
-        <div class="entry-card-top">
-          <div class="entry-card-meta"><span class="tag-pill pill-mint">🎯 Win</span><span class="entry-date-sm">Earlier Today</span></div>
-          <span class="entry-mood">🟢</span>
-        </div>
-        <div class="entry-title">Design Internship Secured</div>
-        <div class="entry-preview">I've been waiting for this for 3 months. The email came in at 9am and I just stared at it for 5 minutes. I called mom first, then Arjun. It feels surreal but also like the hard work finally materialized into something tangible.</div>
-      </div>
-    </div>
-  </div>
-</div>
- 
-<!-- ═══ SECTION 2 — FEEDBACK ═══ -->
-<div class="screen" id="screen-s2-feedback">
-  <div class="wrap">
-    <div class="section-tag">Module 2 — The Mirror</div>
-    <div class="page-title">Feedback Matrix</div>
-    <div class="page-sub">Distribute anonymous request links to your trusted circle. The responses will aggregate here to reveal your blind spots and core strengths.</div>
- 
-    <div class="feedback-tabs">
-      <button class="ftab active" onclick="setFTab(this,'ft-send')">Distribution</button>
-      <button class="ftab" onclick="setFTab(this,'ft-insights')">Aggregated Insights</button>
-    </div>
- 
-    <!-- SEND TAB -->
-    <div id="ft-send">
-      <div class="q-showcase">
-        <div class="q-block">
-          <div class="q-icon qi1">🌟</div>
-          <div>
-            <div class="q-label ql1">Vector 1 · Hidden Strengths</div>
-            <div class="q-text">"What is a genuine strength I possess that I might be underestimating?"</div>
-            <div class="q-hint">Identifies normalized competencies.</div>
-          </div>
-        </div>
-        <div class="q-block">
-          <div class="q-icon qi2">🌱</div>
-          <div>
-            <div class="q-label ql2">Vector 2 · Growth Opportunities</div>
-            <div class="q-text">"Where is my greatest area for improvement or growth?"</div>
-            <div class="q-hint">Surfaces constructive friction.</div>
-          </div>
-        </div>
-        <div class="q-block">
-          <div class="q-icon qi3">⚡</div>
-          <div>
-            <div class="q-label ql3">Vector 3 · Flow State</div>
-            <div class="q-text">"In what environments or scenarios do I appear most powerful and aligned?"</div>
-            <div class="q-hint">Maps optimal operational zones.</div>
-          </div>
-        </div>
-      </div>
- 
-      <div class="invite-flow" id="send-form-ui">
-        <div class="card-label" style="margin-bottom:16px;">Select Recipients</div>
-        <div class="contacts-grid">
-          <div class="contact-chip" onclick="toggleC(this,'Mom')"><div class="chip-av" style="background:var(--mint);">M</div>Mom</div>
-          <div class="contact-chip" onclick="toggleC(this,'Dad')"><div class="chip-av" style="background:var(--cyan);">D</div>Dad</div>
-          <div class="contact-chip" onclick="toggleC(this,'Arjun (arjun@test.com)')"><div class="chip-av" style="background:var(--sky);">A</div>Arjun</div>
-        </div>
-        <div class="selected-row" id="sel-row"></div>
-        <div class="add-row">
-          <input type="text" id="new-name" placeholder="Name"/>
-          <input type="email" id="new-ct" placeholder="Email Address" style="max-width:220px;"/>
-          <button class="btn-add" onclick="addPerson()">+ Add</button>
+
+    <header>
+        <div class="logo-area">
+            <div class="logo-title">TVRLS</div>
+            <div class="logo-subtitle">Building Managers ... Making a Difference</div>
         </div>
         
-        <div style="display:flex; gap:12px; margin-top:24px;">
-          <button class="btn-full" id="send-btn" onclick="sendSparks()" disabled style="flex:1;">Launch via Email ✦</button>
-          <button class="btn-full" id="copy-btn" onclick="copyInviteLink()" style="flex:1; background: var(--violet); color: #fff;">Copy Secure Link 🔗</button>
+        <nav class="nav-links" id="navLinks">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+            <a href="#">Programs</a>
+            <a href="#">Contact</a>
+            <div class="student-tag mobile-only" style="display: inline-block; margin-top: 10px;">🎓 Student Edition: 50% Off</div>
+        </nav>
+
+        <div class="student-tag desktop-only">🎓 Student Edition: 50% Off</div>
+
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <section class="hero">
+        <h1>PERFECT PROFESSIONAL</h1>
+        <p>A LEARNING PORTAL BY TVRLS</p>
+    </section>
+
+    <section class="intro-section">
+        <h2>OUR PROGRAMS</h2>
+        <div class="quote">"WE ARE ALL BORN TALENTED"</div>
+        <div class="sub-quote">THIS TALENT HOWEVER NEEDS TO BE CONTINUOUSLY RECOGNIZED, NURTURED AND DEVELOPED.</div>
+        
+        <div class="custom-text-area">
+            <p><em>[Please paste the text from your 2nd and 3rd screenshots here. I have formatted this box to make it look clean and professional.]</em></p>
+            </div>
+    </section>
+
+    <div class="programs-container">
+        
+        <div class="card">
+            <div class="card-img-wrapper">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600');"></div>
+            </div>
+            <div class="card-content">
+                <h3>OLP 1: CREATING INDIVIDUAL DEVELOPMENT PLANS</h3>
+                <div class="cert-tag">(Certification Program)</div>
+                <div class="sessions">Total of 8 sessions</div>
+                <div class="pricing-area">
+                    <div class="original-price">Standard: ₹7000</div>
+                    <div class="student-price">₹3500</div>
+                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">(Plus 18% GST)</div>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-outline">VIDEO</a>
+                    <a href="#" class="btn btn-solid">ADD TO CART</a>
+                </div>
+            </div>
         </div>
-      </div>
- 
-      <div class="success-wrap" id="send-success" style="display:none">
-        <div class="success-icon">✦</div>
-       <h3>Deployment Active</h3>
-        <p>Your secure link is generated. Await incoming responses to build your insight matrix.</p>
-        <button class="btn btn-primary" onclick="show('s2-feedback');switchToInsights()">View Dashboard →</button>
-      </div>
-    </div>
- 
-    <!-- INSIGHTS TAB -->
-    <div id="ft-insights" style="display:none">
-      <div class="insight-grid">
-        <div class="insight-box"><div class="insight-num" id="stat-responses">0</div><div class="insight-lbl">Data Points</div></div>
-        <div class="insight-box"><div class="insight-num" id="stat-people">0</div><div class="insight-lbl">Contributors</div></div>
-        <div class="insight-box"><div class="insight-num">4</div><div class="insight-lbl">Core Themes</div></div>
-      </div>
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-label">Machine-Generated Theme Clusters</div>
-        <div class="theme-row"><span class="theme-name">Creativity</span><div class="theme-track"><div class="theme-bar" style="width:82%;background:var(--cyan-l);"></div></div><span class="theme-pct">82%</span></div>
-        <div class="theme-row"><span class="theme-name">Empathy</span><div class="theme-track"><div class="theme-bar" style="width:71%;background:var(--mint);"></div></div><span class="theme-pct">71%</span></div>
-        <div class="theme-row"><span class="theme-name">Leadership</span><div class="theme-track"><div class="theme-bar" style="width:54%;background:var(--violet);"></div></div><span class="theme-pct">54%</span></div>
-        <div class="theme-row"><span class="theme-name">Focus</span><div class="theme-track"><div class="theme-bar" style="width:38%;background:var(--coral);"></div></div><span class="theme-pct">38%</span></div>
-      </div>
-      <div class="card">
-        <div class="card-label">Raw Qualitative Data</div>
-        <!-- LocalStorage Feed -->
-        <div id="dashboard-feed">
-           <div id="empty-state" style="font-size:13px;color:var(--text3);text-align:center;padding:32px;">Awaiting incoming data. Distribute links to populate.</div>
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600');"></div>
+            </div>
+            <div class="card-content">
+                <h3>OLP 2: COMPETENCY BASED INTERVIEWING</h3>
+                <div class="cert-tag">(Certification Program)</div>
+                <div class="sessions">Total of 8 sessions</div>
+                <div class="pricing-area">
+                    <div class="original-price">Standard: ₹7000</div>
+                    <div class="student-price">₹3500</div>
+                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">(Plus 18% GST)</div>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-outline">VIDEO</a>
+                    <a href="#" class="btn btn-solid">ADD TO CART</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
- 
-<!-- ═══ RESPONDENT (GUEST) VIEW ═══ -->
-<div class="screen" id="screen-respond">
-  <div class="wrap" style="max-width:600px;">
-    <div class="respond-hero">
-      <div class="respond-avatar dyn-initials">E</div>
-      <h2><span class="dyn-firstname" style="text-transform:uppercase;">ESHWAR</span>'S SPARK PROTOCOL</h2>
-      <p>You have been invited to provide anonymous feedback. Your radical candor is required. This data goes directly to <span class="dyn-firstname">Eshwar</span>'s private dashboard.</p>
-    </div>
- 
-    <form id="respond-form" action="https://formspree.io/f/xgodqnqw" method="POST" onsubmit="validateAndSubmit(event)" novalidate>
-      
-      <!-- Meta Details -->
-      <div class="respond-q" style="background: var(--bg3); border-color: var(--cyan);">
-        <div class="rq-label ql2">Submitter Metadata</div>
-        <div class="rq-text">Identify yourself to help <span class="dyn-firstname">Eshwar</span> contextualize this data (your specific answers remain unlinked and clustered).</div>
-        <div class="form-input-group">
-          <input type="text" id="resp-name" name="respondent_name" placeholder="Full Name *">
-          <input type="email" id="resp-email" name="respondent_email" placeholder="Email Address *">
-          <input type="text" id="resp-city" name="respondent_city" placeholder="Location *">
-          <input type="text" id="resp-country" name="respondent_country" placeholder="Relation *">
-          <input class="full-width" id="resp-work" type="text" name="respondent_workplace" placeholder="Current Organization / Affiliation *">
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600');"></div>
+            </div>
+            <div class="card-content">
+                <h3>OLP 3: PERFORMANCE MANAGEMENT SYSTEMS</h3>
+                <div class="cert-tag">(Certification Program)</div>
+                <div class="sessions">Total of 8 sessions</div>
+                <div class="pricing-area">
+                    <div class="original-price">Standard: ₹8500</div>
+                    <div class="student-price">₹4250</div>
+                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">(Plus 18% GST)</div>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-outline">VIDEO</a>
+                    <a href="#" class="btn btn-solid">ADD TO CART</a>
+                </div>
+            </div>
         </div>
-        <div id="demo-error" class="error-text">Incomplete metadata fields detected.</div>
-      </div>
 
-      <!-- Protocol Questions -->
-      <div class="respond-q">
-        <div class="rq-label ql1">Vector 1 · Hidden Strengths</div>
-        <div class="rq-text">"What is a genuine strength you've observed in <span class="dyn-firstname">Eshwar</span> that he might underappreciate?"</div>
-        <textarea id="ans-q1" name="q1" placeholder="Provide specific examples... *"></textarea>
-      </div>
-      <div class="respond-q">
-        <div class="rq-label ql2">Vector 2 · Growth Opportunities</div>
-        <div class="rq-text">"Where does <span class="dyn-firstname">Eshwar</span> have the highest leverage for improvement?"</div>
-        <textarea id="ans-q2" name="q2" placeholder="Maintain constructive intent... *"></textarea>
-      </div>
-      <div class="respond-q">
-        <div class="rq-label ql3">Vector 3 · Flow State</div>
-        <div class="rq-text">"When is <span class="dyn-firstname">Eshwar</span> operating in his absolute optimal zone?"</div>
-        <textarea id="ans-q3" name="q3" placeholder="Describe the environment or context... *"></textarea>
-        <div id="q-error" class="error-text">All vectors require input.</div>
-      </div>
-      
-      <button type="submit" class="btn-full" id="submit-btn" style="padding: 20px; font-size: 16px;">Transmit Protocol ✦</button>
-      <p style="text-align:center;font-size:12px;color:var(--text3);margin-top:16px;">End-to-end encrypted · Zero auth required</p>
-    </form>
- 
-    <div class="success-wrap" id="respond-success" style="display:none">
-      <div class="success-icon">✦</div>
-      <h3>Transmission Complete.</h3>
-      <p>Data successfully routed to <span class="dyn-firstname">Eshwar</span>'s matrix. Your contribution is valuable.</p>
-      <button class="btn btn-outline" style="margin-top:24px;" onclick="show('home')">Return to System Home</button>
+        <div class="card">
+            <div class="card-img-wrapper">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&w=600');"></div>
+            </div>
+            <div class="card-content">
+                <h3>OLP 4: MANAGERIAL EFFECTIVENESS</h3>
+                <div class="cert-tag">(Certification Program)</div>
+                <div class="sessions">Total of 12 sessions</div>
+                <div class="pricing-area">
+                    <div class="original-price">Standard: ₹6500</div>
+                    <div class="student-price">₹3250</div>
+                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">(Plus 18% GST)</div>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-outline">VIDEO</a>
+                    <a href="#" class="btn btn-solid">ADD TO CART</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600');"></div>
+            </div>
+            <div class="card-content">
+                <h3>OLP 5: 360 DEGREE FEEDBACK - THEORY</h3>
+                <div class="cert-tag">(Certification Program)</div>
+                <div class="sessions">Total of 8 sessions</div>
+                <div class="pricing-area">
+                    <div class="original-price">Standard: ₹8500</div>
+                    <div class="student-price">₹4250</div>
+                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">(Plus 18% GST)</div>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-outline">VIDEO</a>
+                    <a href="#" class="btn btn-solid">ADD TO CART</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600');"></div>
+            </div>
+            <div class="card-content">
+                <h3>OLP 6: BASICS OF HRD</h3>
+                <div class="cert-tag">(Certification Program)</div>
+                <div class="sessions">Total of 11 sessions</div>
+                <div class="pricing-area">
+                    <div class="original-price">Standard: ₹8500</div>
+                    <div class="student-price">₹4250</div>
+                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">(Plus 18% GST)</div>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-outline">VIDEO</a>
+                    <a href="#" class="btn btn-solid">ADD TO CART</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600');"></div>
+            </div>
+            <div class="card-content">
+                <h3>OLP 7: HRD AUDIT</h3>
+                <div class="cert-tag">(Certification Program)</div>
+                <div class="sessions">Total of 11 sessions</div>
+                <div class="pricing-area">
+                    <div class="original-price">Standard: ₹8500</div>
+                    <div class="student-price">₹4250</div>
+                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">(Plus 18% GST)</div>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-outline">VIDEO</a>
+                    <a href="#" class="btn btn-solid">ADD TO CART</a>
+                </div>
+            </div>
+        </div>
+
     </div>
-  </div>
-</div>
- 
-<script>
-// System Initialization
-document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-const sel = new Set();
- 
-function show(id) {
- document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
- document.getElementById('screen-'+id).classList.add('active');
-  const map={home:0,'s1-profile':1,'s1-journal':2,'s2-feedback':3,respond:4};
- document.querySelectorAll('.ntab').forEach((t,i)=>t.classList.toggle('active',i===map[id]));
- window.scrollTo({top: 0, behavior: 'smooth'});
- if(id==='s2-feedback') resetFeed();
-}
- 
-function toast(msg,dur=3500){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
- setTimeout(()=>t.classList.remove('show'),dur);
-}
 
-// Global Identity Variables
-function updateNamesAcrossApp() {
-  const inputEl = document.getElementById('profile-name-input');
-  let fullName = inputEl.value.trim();
-  if (!fullName) fullName = "User";
-  
-  const firstName = fullName.split(' ')[0] || "User";
-  
-  const parts = fullName.split(' ');
-  let initials = parts[0].charAt(0).toUpperCase();
-  if(parts.length > 1) {
-      initials += parts[parts.length-1].charAt(0).toUpperCase();
-  }
+    <footer>
+        <p><strong>Perfect Professional</strong> &copy; 2026. All Rights Reserved.</p>
+        <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">Note: Valid Student ID required at checkout to process 50% discounted rates.</p>
+    </footer>
 
-  document.querySelectorAll('.dyn-fullname').forEach(el => el.textContent = fullName);
-  document.querySelectorAll('.dyn-firstname').forEach(el => el.textContent = firstName);
-  document.querySelectorAll('.dyn-initials').forEach(el => el.textContent = initials);
-}
- 
-// Journal Module Logic
-function openComposer(){ document.getElementById('composer').style.display='block'; document.getElementById('etitle').focus(); }
-function closeComposer(){ document.getElementById('composer').style.display='none'; document.getElementById('etitle').value=''; document.getElementById('ebody').value=''; }
-function setEType(el){document.querySelectorAll('.etype').forEach(e=>e.classList.remove('active'));el.classList.add('active');}
-function setMood(el){document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));el.classList.add('selected');}
-function saveEntry(){
-  const title=document.getElementById('etitle').value.trim();
-  const body=document.getElementById('ebody').value.trim();
-  if(!title&&!body) return toast('Input required to publish.');
-  const type=document.querySelector('.etype.active')?.textContent.trim()||'📅 Event';
-  const mood=document.querySelector('.mood-btn.selected')?.textContent||'🟢';
-  const card=document.createElement('div'); card.className='entry-card';
-  card.innerHTML=`<div class="entry-card-top"><div class="entry-card-meta"><span class="tag-pill pill-cyan">${type}</span><span class="entry-date-sm">Just now</span></div><span class="entry-mood">${mood}</span></div><div class="entry-title">${title||'Untitled'}</div><div class="entry-preview">${body||'...'}</div>`;
-  const list=document.getElementById('entries-list');
-  list.insertBefore(card,list.firstChild);
-  closeComposer(); toast('✦ Entry recorded in Archive.');
-}
- 
-// Feedback Distribution Logic
-function toggleC(el,name){
- if(sel.has(name)){sel.delete(name);el.classList.remove('on');}
- else{sel.add(name);el.classList.add('on');}
-  renderSel();
-}
-function addPerson(){
-  const n=document.getElementById('new-name').value.trim();
-  if(!n)return;
-  const e=document.getElementById('new-ct').value.trim();
-  sel.add(n+(e?' ('+e+')':''));
-  document.getElementById('new-name').value='';
-  document.getElementById('new-ct').value='';
-  renderSel();
-}
-document.getElementById('new-name').addEventListener('keypress', function(e) { if (e.key === 'Enter') { e.preventDefault(); addPerson(); }});
-document.getElementById('new-ct').addEventListener('keypress', function(e) { if (e.key === 'Enter') { e.preventDefault(); addPerson(); }});
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navLinks = document.getElementById('navLinks');
 
-function removeSel(name){
-  sel.delete(name);
-  document.querySelectorAll('.contact-chip').forEach(c=>{if(c.textContent.trim().startsWith(name))c.classList.remove('on');});
-  renderSel();
-}
-function renderSel(){
-  const row = document.getElementById('sel-row'); row.innerHTML = '';
-  sel.forEach(name => {
-    const s = document.createElement('div'); s.className = 'sel-chip'; s.textContent = name;
-    const x = document.createElement('span'); x.className = 'sel-x'; x.innerHTML = '&times;';
-    x.onclick = () => removeSel(name);
-    s.appendChild(x); row.appendChild(s);
-  });
-  document.getElementById('send-btn').disabled = sel.size === 0;
-}
-function setFTab(el,id){
- document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
- el.classList.add('active');
- document.getElementById('ft-send').style.display=id==='ft-send'?'block':'none';
- document.getElementById('ft-insights').style.display=id==='ft-insights'?'block':'none';
-}
-
-function copyInviteLink() {
-  const pageUrl = window.location.href;
-  const message = `Spark Protocol Initialization. \nI require your authentic feedback for my identity matrix. 3 secure questions. \n\nAccess here: ${pageUrl}`;
-  
-  navigator.clipboard.writeText(message).then(() => {
-    toast('✦ Secure link copied to clipboard.');
-    document.getElementById('send-form-ui').style.display='none';
-    document.getElementById('send-success').style.display='block';
-  }).catch(err => {
-    toast('❌ Clipboard error.');
-  });
-}
-
-function sendSparks(){
-  const extractedEmails = Array.from(sel).map(item => {
-    const match = item.match(/\(([^)]+)\)/);
-    return match ? match[1] : '';
-  }).filter(email => email.includes('@'));
-
-  if(extractedEmails.length > 0) {
-     const subject = encodeURIComponent("Spark Protocol Request");
-     const body = encodeURIComponent("I require your authentic feedback for my identity matrix. 3 secure questions. \n\nAccess here: " + window.location.href);
-     window.location.href = `mailto:?bcc=${extractedEmails.join(',')}&subject=${subject}&body=${body}`;
-  } else {
-     toast("Alert: Invalid email parameters.");
-  }
-
-  document.getElementById('send-form-ui').style.display='none';
-  document.getElementById('send-success').style.display='block';
-}
-
-function switchToInsights(){
- document.getElementById('ft-send').style.display='none';
- document.getElementById('ft-insights').style.display='block';
- document.querySelectorAll('.ftab').forEach((t,i)=>t.classList.toggle('active',i===1));
-}
-function resetFeed(){
- document.getElementById('send-form-ui').style.display='block';
- document.getElementById('send-success').style.display='none';
- document.getElementById('ft-send').style.display='block';
- document.getElementById('ft-insights').style.display='none';
- document.querySelectorAll('.ftab').forEach((t,i)=>t.classList.toggle('active',i===0));
-}
-
-// Data Handling (Forms & LocalStorage)
-function validateAndSubmit(e) {
-  e.preventDefault(); 
-
-  const form = document.getElementById('respond-form');
-  const btn = document.getElementById('submit-btn');
-
-  const inputs = ['resp-name', 'resp-email', 'resp-city', 'resp-country', 'resp-work'];
-  const textareas = ['ans-q1', 'ans-q2', 'ans-q3'];
-  let isValid = true;
-  let firstInvalid = null;
-
-  inputs.forEach(id => {
-    const el = document.getElementById(id);
-    if(!el.value.trim()) {
-      el.classList.add('error-ring');
-      isValid = false;
-      if(!firstInvalid) firstInvalid = el;
-    } else {
-      el.classList.remove('error-ring');
-    }
-  });
-  document.getElementById('demo-error').style.display = isValid ? 'none' : 'block';
-
-  let qValid = true;
-  textareas.forEach(id => {
-    const el = document.getElementById(id);
-    if(!el.value.trim()) {
-      el.classList.add('error-ring');
-      qValid = false;
-      isValid = false;
-      if(!firstInvalid) firstInvalid = el;
-    } else {
-      el.classList.remove('error-ring');
-    }
-  });
-  document.getElementById('q-error').style.display = qValid ? 'none' : 'block';
-
-  if(!isValid) {
-     const y = firstInvalid.getBoundingClientRect().top + window.scrollY - 100;
-     window.scrollTo({top: y, behavior: 'smooth'});
-     return;
-  }
-
-  btn.textContent = "Transmitting...";
-  btn.disabled = true;
-
-  const formData = new FormData(form);
-
-  fetch(form.action, {
-    method: 'POST',
-    body: formData,
-    headers: {
-      'Accept': 'application/json'
-    }
-  }).then(response => {
-    if (response.ok) {
-      saveLocalCopyForDashboard(formData);
-      
-      document.getElementById('respond-form').style.display='none';
-      document.getElementById('respond-success').style.display='block';
-      toast('✦ Protocol transmitted successfully.');
-    } else {
-      response.json().then(data => {
-        if (Object.hasOwn(data, 'errors')) {
-          toast(data["errors"].map(error => error["message"]).join(", "));
-        } else {
-          toast("System Error during transmission.");
-        }
-      });
-    }
-  }).catch(error => {
-    toast("System Error during transmission.");
-  }).finally(() => {
-     btn.textContent = "Transmit Protocol ✦";
-     btn.disabled = false;
-     form.reset();
-  });
-}
-
-document.querySelectorAll('input, textarea').forEach(el => {
-  el.addEventListener('input', () => { el.classList.remove('error-ring'); });
-});
-
-function saveLocalCopyForDashboard(formData) {
-  const respName = formData.get('respondent_name').trim().split(' ')[0];
-  const q1 = formData.get('q1').trim();
-  const q2 = formData.get('q2').trim();
-  const q3 = formData.get('q3').trim();
-
-  const existingData = JSON.parse(localStorage.getItem('sparkDataMatrix') || '[]');
-  
-  existingData.push({
-      name: respName,
-      strength: q1,
-      growth: q2,
-      zone: q3,
-      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-  });
-
-  localStorage.setItem('sparkDataMatrix', JSON.stringify(existingData));
-  renderDashboardFeed();
-}
-
-function renderDashboardFeed() {
-   const data = JSON.parse(localStorage.getItem('sparkDataMatrix') || '[]');
-   const feed = document.getElementById('dashboard-feed');
-   
-   document.getElementById('stat-responses').textContent = data.length * 3;
-   document.getElementById('stat-people').textContent = data.length;
-
-   if(data.length === 0) return;
-
-   feed.innerHTML = '';
-   for (let i = data.length - 1; i >= 0; i--) {
-      const resp = data[i];
-      if(resp.strength) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><div style="display:flex; gap:8px; align-items:center;"><span class="q-icon qi1" style="width:28px;height:28px;font-size:14px;border-radius:6px;">🌟</span><span style="font-size:11px; font-weight:800; color:var(--mint); text-transform:uppercase;">Vector 1</span></div><span class="resp-from">Node: ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.strength}</div></div>`;
-      if(resp.growth) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><div style="display:flex; gap:8px; align-items:center;"><span class="q-icon qi2" style="width:28px;height:28px;font-size:14px;border-radius:6px;">🌱</span><span style="font-size:11px; font-weight:800; color:var(--cyan); text-transform:uppercase;">Vector 2</span></div><span class="resp-from">Node: ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.growth}</div></div>`;
-      if(resp.zone) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><div style="display:flex; gap:8px; align-items:center;"><span class="q-icon qi3" style="width:28px;height:28px;font-size:14px;border-radius:6px;">⚡</span><span style="font-size:11px; font-weight:800; color:var(--sky); text-transform:uppercase;">Vector 3</span></div><span class="resp-from">Node: ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.zone}</div></div>`;
-   }
-}
-
-window.onload = function() {
-    updateNamesAcrossApp();
-    renderDashboardFeed(); 
-}
-</script>
+        // Toggle mobile menu
+        hamburgerBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Simple animation for the hamburger lines
+            const spans = hamburgerBtn.querySelectorAll('span');
+            if (navLinks.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
