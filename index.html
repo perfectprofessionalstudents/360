@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spark ✦ — Shark Tank Pitch</title>
+<title>Spark ✦ — Know yourself. See yourself.</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -19,25 +19,23 @@
   --coral: #FF3366; --coral-bg: rgba(255, 51, 102, 0.1);
   --sky: #4DABF7; --sky-bg: rgba(77, 171, 247, 0.1);
   
-  /* Pitch Deck Golden Accent */
-  --gold: #FFD700; --gold-bg: rgba(255, 215, 0, 0.1);
-  
   /* Deep Space Backgrounds */
   --bg: #020617; 
   --bg2: #0F172A; 
-  --bg3: rgba(15, 23, 42, 0.9); 
+  --bg3: rgba(15, 23, 42, 0.85); 
   --bg4: #1E293B;
   
   /* Clean Borders */
-  --border: rgba(0, 229, 255, 0.2); 
+  --border: rgba(0, 229, 255, 0.15); 
+  --border-h: rgba(0, 229, 255, 0.4);
   
   /* High Contrast Dark Mode Text */
   --text: #FFFFFF; 
-  --text2: rgba(255, 255, 255, 0.7); 
-  --text3: rgba(255, 255, 255, 0.4);
+  --text2: rgba(255, 255, 255, 0.75); 
+  --text3: rgba(255, 255, 255, 0.45);
   
   /* Solid Cards */
-  --white: rgba(15, 23, 42, 0.6); 
+  --white: rgba(15, 23, 42, 0.7); 
   --r: 18px; --r-sm: 12px;
 }
 
@@ -51,337 +49,271 @@ body::before{
 body::after {
   content: ""; position: fixed; top: 0; left: 0; width: 1px; height: 1px;
   background: transparent; z-index: 0; pointer-events: none;
+  box-shadow: 10vw 20vh 1px var(--text3), 20vw 80vh 1px var(--text3), 80vw 10vh 1px var(--text3), 90vw 90vh 1px var(--text3), 50vw 50vh 1px var(--text3), 30vw 30vh 1px var(--text3), 70vw 70vh 1px var(--text3);
   animation: starsBlink 4s infinite alternate;
 }
 @keyframes starsBlink {
-  from { opacity: 0.2; }
-  to { opacity: 0.7; }
+  from { opacity: 0.3; }
+  to { opacity: 0.8; }
 }
  
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:13px 28px;background:var(--bg3);border-bottom:1px solid var(--border);backdrop-filter: blur(10px);}
-.logo{font-family:'Fraunces',serif;font-size:21px;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:3px;text-decoration:none;text-transform:uppercase;letter-spacing:1px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:13px 28px;background:var(--bg3);border-bottom:1px solid var(--border);backdrop-filter: blur(12px);-webkit-backdrop-filter: blur(12px);}
+.logo{font-family:'Fraunces',serif;font-size:22px;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;text-transform:uppercase;letter-spacing:1px;}
 .logo span{color:var(--cyan);}
-.logo-star{color:var(--cyan);font-size:12px;animation:spin 5s linear infinite;display:inline-block;}
+.logo-star{color:var(--cyan);font-size:14px;animation:spin 8s linear infinite;display:inline-block;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.nav-center{display:flex;gap:3px;background:var(--bg2);border-radius:100px;padding:4px;border:1px solid var(--border);}
-.ntab{padding:7px 15px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;color:var(--text2);border:none;background:none;transition:all 0.2s;font-family:'Nunito',sans-serif;}
-.ntab.active{background:var(--cyan);color:var(--bg);}
-.ntab.pitch-tab.active{background:var(--gold);color:var(--bg);}
+.nav-center{display:flex;gap:4px;background:var(--bg2);border-radius:100px;padding:5px;border:1px solid var(--border);}
+.ntab{padding:8px 18px;border-radius:100px;font-size:13px;font-weight:700;cursor:pointer;color:var(--text2);border:none;background:none;transition:all 0.25s cubic-bezier(0.4, 0, 0.2, 1);font-family:'Nunito',sans-serif;}
+.ntab.active{background:var(--cyan);color:var(--bg);box-shadow: 0 2px 10px rgba(0, 229, 255, 0.2);}
 .ntab:hover:not(.active){color:var(--cyan);background:var(--cyan-bg);}
-.avatar-nav{width:33px;height:33px;border-radius:50%;background:var(--bg2);border:1.5px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--cyan);cursor:pointer;}
+.avatar-nav{width:36px;height:36px;border-radius:50%;background:var(--bg2);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--cyan);cursor:pointer;transition:transform 0.2s;}
+.avatar-nav:hover{transform:scale(1.05);}
  
 /* SCREENS */
-.screen{display:none;padding-top:74px;min-height:100vh;animation:fadeUp 0.3s ease;position:relative;z-index:1;}
+.screen{display:none;padding-top:74px;min-height:100vh;animation:fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);position:relative;z-index:1;}
 .screen.active{display:block;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
  
-/* SHARED */
-.wrap{max-width:700px;margin:0 auto;padding:36px 24px;}
-.section-tag{font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:5px;}
-.page-title{font-family:'Fraunces',serif;font-size:1.9rem;letter-spacing:-0.02em;margin-bottom:5px;text-transform:uppercase;}
-.page-sub{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:26px;}
-.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:20px;}
-.card+.card{margin-top:12px;}
-.card-label{font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:100px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:'Nunito',sans-serif;transition:all 0.2s;}
-.btn-primary{background: var(--cyan);color:var(--bg);}
-.btn-primary:hover{background: var(--cyan-l);transform:translateY(-1px);}
-.btn-gold{background: var(--gold);color:var(--bg);box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);}
-.btn-gold:hover{background: #FFEA70;transform:translateY(-1px);}
-.btn-outline{background:transparent;color:var(--cyan);border:1.5px solid var(--cyan);}
-.btn-outline:hover{background:var(--cyan-bg);}
-.btn-sm{padding:7px 15px;font-size:12px;}
-.tag-pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:4px 11px;border-radius:100px;}
-.pill-cyan{background:var(--cyan-bg);color:var(--cyan);border:1px solid var(--cyan);}
-.pill-mint{background:var(--mint-bg);color:var(--mint);border:1px solid var(--mint);}
-.pill-violet{background:var(--violet-bg);color:var(--violet);border:1px solid var(--violet);}
-.pill-coral{background:var(--coral-bg);color:var(--coral);border:1px solid var(--coral);}
-.pill-sky{background:var(--sky-bg);color:var(--sky);border:1px solid var(--sky);}
-.btn-full{width:100%;padding:14px;background: var(--cyan);color:var(--bg);border:none;border-radius:var(--r);font-size:15px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:all 0.2s;margin-top:4px;}
-.btn-full:hover{background: var(--cyan-l);transform:translateY(-1px);}
-.btn-full:disabled{opacity:0.38;pointer-events:none;}
+/* SHARED UTILS */
+.wrap{max-width:720px;margin:0 auto;padding:40px 24px;}
+.section-tag{font-size:11px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;color:var(--cyan);}
+.page-title{font-family:'Fraunces',serif;font-size:2.2rem;letter-spacing:-0.02em;margin-bottom:8px;text-transform:uppercase;}
+.page-sub{font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:32px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px;backdrop-filter: blur(10px); transition: border-color 0.3s;}
+.card:hover{border-color: var(--border-h);}
+.card+.card{margin-top:16px;}
+.card-label{font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:'Nunito',sans-serif;transition:all 0.25s;}
+.btn-primary{background: var(--cyan);color:var(--bg);box-shadow: 0 4px 15px rgba(0, 229, 255, 0.15);}
+.btn-primary:hover{background: var(--cyan-l);transform:translateY(-2px);box-shadow: 0 6px 20px rgba(0, 229, 255, 0.25);}
+.btn-outline{background:transparent;color:var(--cyan);border:2px solid var(--cyan);}
+.btn-outline:hover{background:var(--cyan-bg);transform:translateY(-2px);}
+.btn-sm{padding:8px 16px;font-size:13px;}
+.tag-pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:5px 12px;border-radius:100px;}
+.pill-cyan{background:var(--cyan-bg);color:var(--cyan);border:1px solid var(--border-h);}
+.pill-mint{background:var(--mint-bg);color:var(--mint);border:1px solid rgba(0, 255, 170, 0.3);}
+.pill-violet{background:var(--violet-bg);color:var(--violet);border:1px solid rgba(139, 92, 246, 0.3);}
+.pill-coral{background:var(--coral-bg);color:var(--coral);border:1px solid rgba(255, 51, 102, 0.3);}
+.pill-sky{background:var(--sky-bg);color:var(--sky);border:1px solid rgba(77, 171, 247, 0.3);}
+.btn-full{width:100%;padding:16px;background: var(--cyan);color:var(--bg);border:none;border-radius:var(--r);font-size:15px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:all 0.2s;margin-top:8px;}
+.btn-full:hover{background: var(--cyan-l);transform:translateY(-2px);}
+.btn-full:disabled{opacity:0.4;pointer-events:none;}
  
-/* INVESTOR PITCH (HOME) */
-.pitch-hero{text-align:center;padding:68px 24px 44px;max-width:800px;margin:0 auto;}
-.hero-badge-gold{display:inline-flex;align-items:center;gap:6px;background:var(--gold-bg);border:1px solid var(--gold);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:800;color:var(--gold);margin-bottom:22px;text-transform:uppercase;letter-spacing:0.05em;}
-.pitch-hero h1{font-family:'Fraunces',serif;font-size:clamp(2.5rem,6vw,4rem);line-height:1.1;letter-spacing:-0.03em;margin-bottom:16px;text-transform:uppercase;}
-.pitch-hero h1 em{color:var(--cyan);font-style:normal;}
-.the-ask{display:inline-block;background:var(--bg2);border:2px dashed var(--gold);padding:15px 30px;border-radius:var(--r);margin:15px 0 25px;font-family:'Fraunces',serif;font-size:1.5rem;color:var(--gold);}
-.pitch-hero p{font-size:16px;color:var(--text2);line-height:1.8;max-width:540px;margin:0 auto 30px;}
-.pitch-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+/* LANDING / HOME PAGE */
+.hero{text-align:center;padding:80px 24px 60px;max-width:700px;margin:0 auto;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--cyan-bg);border:1px solid var(--border-h);border-radius:100px;padding:8px 16px;font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:24px;text-transform:uppercase;letter-spacing:0.05em;}
+.badge-blink{width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:blink 2s infinite;box-shadow: 0 0 10px var(--cyan);}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.5rem,6vw,4rem);line-height:1.05;letter-spacing:-0.03em;margin-bottom:20px;text-transform:uppercase;}
+.hero h1 em{color:var(--cyan);font-style:normal;}
+.hero p{font-size:16px;color:var(--text2);line-height:1.8;max-width:500px;margin:0 auto 36px;}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 
-/* PITCH DECK SECTIONS */
-.pitch-deck-wrap{max-width:900px;margin:0 auto;padding:0 24px 60px;}
-.deck-slide{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:40px;margin-bottom:20px;}
-.slide-label{font-size:12px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-.slide-title{font-family:'Fraunces',serif;font-size:2rem;margin-bottom:20px;text-transform:uppercase;}
-.split-slide{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
-.problem-box{background:var(--coral-bg);border:1px solid var(--coral);border-radius:var(--r-sm);padding:24px;}
-.solution-box{background:var(--mint-bg);border:1px solid var(--mint);border-radius:var(--r-sm);padding:24px;}
-
-/* TRACTION METRICS */
-.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:20px;}
-.metric-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:20px;text-align:center;}
-.m-value{font-family:'Fraunces',serif;font-size:2.5rem;color:var(--cyan);margin-bottom:5px;}
-.m-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--text2);}
-
-/* BIZ MODEL */
-.biz-model-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}
-.tier-card{border:1px solid var(--border);border-radius:var(--r-sm);padding:25px;background:var(--bg2);}
-.tier-card.pro{border-color:var(--cyan);background:var(--cyan-bg);position:relative;}
-.tier-price{font-family:'Fraunces',serif;font-size:2rem;margin:10px 0;}
-.tier-price span{font-size:1rem;color:var(--text2);font-family:'Nunito',sans-serif;}
-
-/* REST OF APP (Same as before) */
-.profile-hero{display:flex;gap:18px;align-items:flex-start;margin-bottom:26px;}
-.avatar-lg{width:72px;height:72px;border-radius:50%;background:var(--bg2);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:26px;color:var(--cyan);flex-shrink:0;}
-.profile-name{font-family:'Fraunces',serif;font-size:1.7rem;letter-spacing:-0.02em;margin-bottom:4px;text-transform:uppercase;}
-.profile-bio-t{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:9px;}
-.profile-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
-.info-field label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);display:block;margin-bottom:5px;}
-.info-field input,.info-field textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;color:var(--text);font-size:13px;font-family:'Nunito',sans-serif;outline:none;transition:all 0.2s;}
-.info-field input:focus,.info-field textarea:focus{border-color:var(--cyan);outline:none;}
+/* PRODUCT MODULES (Home) */
+.module-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:880px;margin:0 auto 60px;padding:0 24px;}
+.module-card{border-radius:var(--r);padding:32px;cursor:pointer;transition:all 0.3s cubic-bezier(0.16, 1, 0.3, 1);border:1px solid var(--border);background:var(--white);position:relative;overflow:hidden;}
+.module-card::after{content:'→';position:absolute;top:32px;right:32px;font-size:24px;color:var(--border-h);transition:all 0.3s;font-family:sans-serif;}
+.module-card:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+.module-card:hover::after{color:var(--cyan);transform:translateX(5px);}
+.mc-icon{font-size:40px;margin-bottom:16px;display:inline-block;padding:12px;background:var(--bg2);border-radius:16px;border:1px solid var(--border);}
+.mc-num{font-size:11px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;}
+.module-card h3{font-family:'Fraunces',serif;font-size:1.6rem;margin-bottom:12px;letter-spacing:-0.02em;text-transform:uppercase;}
+.module-card p{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:20px;}
+.mc-features{display:flex;flex-direction:column;gap:8px;}
+.mc-feat{font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px;font-weight:600;}
+.mc-feat::before{content:'✦';font-size:10px;color:var(--cyan);}
+.home-foot{text-align:center;padding:0 0 48px;font-size:13px;color:var(--text3);font-weight:600;letter-spacing:0.05em;}
+ 
+/* PROFILE SCREEN */
+.profile-hero{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;}
+.avatar-lg{width:88px;height:88px;border-radius:50%;background:var(--bg2);border:3px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:32px;color:var(--cyan);flex-shrink:0;box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);}
+.profile-name{font-family:'Fraunces',serif;font-size:2rem;letter-spacing:-0.02em;margin-bottom:6px;text-transform:uppercase;}
+.profile-bio-t{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:12px;max-width:500px;}
+.profile-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.info-field label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);display:block;margin-bottom:8px;}
+.info-field input,.info-field textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 16px;color:var(--text);font-size:14px;font-family:'Nunito',sans-serif;outline:none;transition:all 0.25s;}
+.info-field input:focus,.info-field textarea:focus{border-color:var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg);}
 .info-field.full{grid-column:1/-1;}
  
-/* JOURNAL */
-.journal-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
-.date-display{font-size:13px;color:var(--cyan);font-weight:700;margin-top:4px;}
-.entry-composer{background:var(--white);border:1px solid var(--cyan);border-radius:var(--r);padding:20px;margin-bottom:16px;}
-.entry-type-tabs{display:flex;gap:5px;margin-bottom:13px;flex-wrap:wrap;}
-.etype{padding:5px 12px;border-radius:100px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text2);transition:all 0.2s;font-family:'Nunito',sans-serif;}
-.etype.active{border-color:var(--cyan);background:var(--cyan-bg);color:var(--text);}
-.entry-title-input{width:100%;background:transparent;border:none;outline:none;font-family:'Fraunces',serif;font-size:1.15rem;color:var(--text);margin-bottom:10px;}
+/* JOURNAL SCREEN */
+.journal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;}
+.date-display{font-size:14px;color:var(--cyan);font-weight:700;}
+.entry-composer{background:var(--white);border:1px solid var(--cyan);border-radius:var(--r);padding:24px;margin-bottom:24px;box-shadow: 0 10px 30px rgba(0,0,0,0.3);}
+.entry-type-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.etype{padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--bg2);color:var(--text2);transition:all 0.2s;font-family:'Nunito',sans-serif;}
+.etype.active{border-color:var(--cyan);background:var(--cyan);color:var(--bg);}
+.entry-title-input{width:100%;background:transparent;border:none;outline:none;font-family:'Fraunces',serif;font-size:1.4rem;color:var(--text);margin-bottom:12px;}
 .entry-title-input::placeholder{color:var(--text3);}
-.entry-body{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px;color:var(--text);font-size:13px;font-family:'Nunito',sans-serif;outline:none;resize:none;line-height:1.8;transition:all 0.2s;}
-.entry-body:focus{border-color:var(--cyan);outline:none;}
-.entry-footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px;flex-wrap:wrap;gap:8px;}
-.mood-row{display:flex;gap:5px;}
-.mood-btn{font-size:17px;cursor:pointer;padding:4px 6px;border-radius:8px;border:1px solid transparent;transition:all 0.18s;background:none;}
-.mood-btn.selected,.mood-btn:hover{background:var(--cyan-bg);border-color:var(--cyan);}
-.journal-timeline{position:relative;padding-left:18px;}
-.journal-timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:2px;background:var(--border);border-radius:2px;}
-.entry-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin-bottom:10px;margin-left:14px;position:relative;transition:all 0.2s;cursor:pointer;}
-.entry-card::before{content:'';position:absolute;left:-20px;top:19px;width:8px;height:8px;border-radius:50%;background:var(--cyan);border:2px solid var(--bg);}
-.entry-card:hover{border-color:var(--cyan);transform:translateX(2px);}
-.entry-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;}
-.entry-card-meta{display:flex;align-items:center;gap:7px;}
-.entry-date-sm{font-size:11px;color:var(--text3);font-weight:600;}
-.entry-mood{font-size:15px;}
-.entry-title{font-family:'Fraunces',serif;font-size:1rem;color:var(--text);margin-bottom:5px;text-transform:uppercase;}
-.entry-preview{font-size:12px;color:var(--text2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.entry-body{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px;color:var(--text);font-size:14px;font-family:'Nunito',sans-serif;outline:none;resize:vertical;line-height:1.8;transition:all 0.2s;min-height: 120px;}
+.entry-body:focus{border-color:var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg);}
+.entry-footer{display:flex;align-items:center;justify-content:space-between;margin-top:16px;flex-wrap:wrap;gap:12px;}
+.mood-row{display:flex;gap:6px;}
+.mood-btn{font-size:20px;cursor:pointer;padding:6px 8px;border-radius:10px;border:1px solid transparent;transition:all 0.2s;background:var(--bg2);}
+.mood-btn.selected,.mood-btn:hover{background:var(--cyan-bg);border-color:var(--cyan);transform:scale(1.1);}
+.journal-timeline{position:relative;padding-left:24px;margin-top:20px;}
+.journal-timeline::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:2px;background:var(--border);border-radius:2px;}
+.entry-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;margin-bottom:16px;margin-left:16px;position:relative;transition:all 0.25s;cursor:pointer;}
+.entry-card::before{content:'';position:absolute;left:-29px;top:24px;width:10px;height:10px;border-radius:50%;background:var(--cyan);border:3px solid var(--bg);box-shadow: 0 0 10px var(--cyan);}
+.entry-card:hover{border-color:var(--cyan);transform:translateX(4px);}
+.entry-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.entry-card-meta{display:flex;align-items:center;gap:10px;}
+.entry-date-sm{font-size:12px;color:var(--text3);font-weight:700;}
+.entry-mood{font-size:18px;background:var(--bg2);padding:4px;border-radius:8px;}
+.entry-title{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--text);margin-bottom:8px;text-transform:uppercase;}
+.entry-preview{font-size:14px;color:var(--text2);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
  
-/* SECTION 2 */
-.feedback-tabs{display:flex;gap:5px;margin-bottom:22px;background:var(--bg3);padding:4px;border-radius:100px;width:fit-content;border:1px solid var(--border);}
-.ftab{padding:8px 18px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;color:var(--text2);border:none;background:none;transition:all 0.2s;font-family:'Nunito',sans-serif;}
-.ftab.active{background:var(--cyan);color:var(--bg);}
-.q-showcase{display:flex;flex-direction:column;gap:10px;margin-bottom:22px;}
-.q-block{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:17px 19px;display:flex;gap:13px;align-items:flex-start;transition:all 0.2s;}
-.q-block:hover{border-color:var(--cyan);transform:translateY(-1px);}
-.q-icon{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+/* SECTION 2 — FEEDBACK */
+.feedback-tabs{display:flex;gap:6px;margin-bottom:28px;background:var(--bg3);padding:6px;border-radius:100px;width:fit-content;border:1px solid var(--border);}
+.ftab{padding:10px 24px;border-radius:100px;font-size:13px;font-weight:700;cursor:pointer;color:var(--text2);border:none;background:transparent;transition:all 0.2s;font-family:'Nunito',sans-serif;}
+.ftab.active{background:var(--cyan);color:var(--bg);box-shadow: 0 2px 8px rgba(0,229,255,0.2);}
+.q-showcase{display:flex;flex-direction:column;gap:12px;margin-bottom:28px;}
+.q-block{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;transition:all 0.2s;}
+.q-block:hover{border-color:var(--border-h);transform:translateY(-2px);}
+.q-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
 .qi1{background:var(--mint-bg); border: 1px solid var(--mint);}
 .qi2{background:var(--cyan-bg); border: 1px solid var(--cyan);}
 .qi3{background:var(--sky-bg); border: 1px solid var(--sky);}
-.q-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;}
+.q-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;}
 .ql1{color:var(--mint);} .ql2{color:var(--cyan);} .ql3{color:var(--sky);}
-.q-text{font-size:13px;color:var(--text);line-height:1.6;margin-bottom:4px;}
-.q-hint{font-size:11px;color:var(--text3);font-style:italic;}
-.invite-flow{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:13px;}
-.contacts-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:13px;}
-.contact-chip{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:100px;padding:6px 13px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--text2);}
-.contact-chip:hover,.contact-chip.on{background:var(--cyan-bg);border-color:var(--cyan);color:var(--text);}
-.chip-av{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:var(--bg);flex-shrink:0;}
-.add-row{display:flex;gap:7px;}
-.add-row input{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:9px 12px;font-size:13px;font-family:'Nunito',sans-serif;color:var(--text);outline:none;transition:all 0.2s;}
-.add-row input:focus{border-color:var(--cyan);outline:none;}
-.btn-add{padding:9px 16px;background:var(--cyan);color:var(--bg);border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;transition:all 0.2s;}
-.btn-add:hover{opacity: 0.9;}
-.selected-row{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;}
-.sel-chip{display:flex;align-items:center;gap:5px;background:var(--cyan-bg);border:1px solid var(--cyan);border-radius:100px;padding:4px 11px;font-size:11px;font-weight:700;color:var(--text);}
-.sel-x{cursor:pointer;opacity:0.5;margin-left:2px;font-size:13px;}
-.sel-x:hover{opacity:1;color:var(--cyan);}
-.insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:13px;}
-.insight-box{background:var(--white);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px;text-align:center;}
-.insight-num{font-family:'Fraunces',serif;font-size:2rem;color:var(--cyan);}
-.insight-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);margin-top:3px;}
-.theme-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.theme-name{font-size:13px;font-weight:600;width:85px;flex-shrink:0;}
-.theme-track{flex:1;height:8px;background:var(--bg2);border-radius:4px;overflow:hidden;border: 1px solid var(--border);}
-.theme-bar{height:100%;border-radius:4px;transition:width 1s cubic-bezier(.4,0,.2,1);}
-.theme-pct{font-size:12px;color:var(--text3);font-weight:700;width:30px;text-align:right;}
-.resp-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:15px 17px;margin-bottom:9px;}
-.resp-top{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap;}
-.resp-from{font-size:11px;color:var(--text3);font-weight:600;}
-.resp-text{font-size:13px;color:var(--text);line-height:1.65; white-space: pre-wrap;}
+.q-text{font-size:14px;color:var(--text);line-height:1.6;margin-bottom:6px;font-weight:600;}
+.q-hint{font-size:12px;color:var(--text3);font-style:italic;}
+.invite-flow{background:var(--white);border:1px solid var(--cyan);border-radius:var(--r);padding:24px;margin-bottom:16px;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+.contacts-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.contact-chip{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;color:var(--text2);}
+.contact-chip:hover,.contact-chip.on{background:var(--cyan-bg);border-color:var(--cyan);color:var(--cyan);}
+.chip-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--bg);flex-shrink:0;}
+.add-row{display:flex;gap:8px;}
+.add-row input{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 16px;font-size:14px;font-family:'Nunito',sans-serif;color:var(--text);outline:none;transition:all 0.2s;}
+.add-row input:focus{border-color:var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg);}
+.btn-add{padding:12px 20px;background:var(--bg2);color:var(--cyan);border:1px solid var(--cyan);border-radius:var(--r-sm);font-size:14px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;transition:all 0.2s;}
+.btn-add:hover{background:var(--cyan);color:var(--bg);}
+.selected-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.sel-chip{display:flex;align-items:center;gap:6px;background:var(--cyan);border:1px solid var(--cyan);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:800;color:var(--bg);}
+.sel-x{cursor:pointer;opacity:0.6;margin-left:4px;font-size:14px;transition:0.2s;}
+.sel-x:hover{opacity:1;transform:scale(1.2);}
+.insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.insight-box{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px;text-align:center;transition:0.3s;}
+.insight-box:hover{border-color:var(--cyan);transform:translateY(-2px);}
+.insight-num{font-family:'Fraunces',serif;font-size:2.5rem;color:var(--cyan);line-height:1;}
+.insight-lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-top:8px;}
+.theme-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.theme-name{font-size:13px;font-weight:700;width:90px;flex-shrink:0;}
+.theme-track{flex:1;height:10px;background:var(--bg2);border-radius:5px;overflow:hidden;border: 1px solid var(--border);}
+.theme-bar{height:100%;border-radius:5px;transition:width 1.5s cubic-bezier(.4,0,.2,1);}
+.theme-pct{font-size:13px;color:var(--text2);font-weight:800;width:35px;text-align:right;}
+.resp-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:20px;margin-bottom:12px;transition:0.2s;}
+.resp-card:hover{border-color:var(--border-h);}
+.resp-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;}
+.resp-from{font-size:12px;color:var(--text3);font-weight:700;}
+.resp-text{font-size:14px;color:var(--text);line-height:1.7; white-space: pre-wrap; font-style: italic;}
  
-/* RESPONDENT */
-.respond-hero{text-align:center;margin-bottom:28px;}
-.respond-avatar{width:64px;height:64px;border-radius:50%;background:var(--bg2);border: 2px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:22px;color:var(--cyan);margin:0 auto 13px;}
-.respond-hero h2{font-family:'Fraunces',serif;font-size:1.55rem;letter-spacing:-0.02em;margin-bottom:6px;text-transform:uppercase;}
-.respond-hero p{font-size:13px;color:var(--text2);line-height:1.7;max-width:360px;margin:0 auto;}
-.respond-q{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:19px;margin-bottom:11px;}
-.rq-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:7px;}
-.rq-text{font-size:13px;color:var(--text);line-height:1.65;margin-bottom:11px;}
+/* RESPONDENT APP VIEW */
+.respond-hero{text-align:center;margin-bottom:32px;}
+.respond-avatar{width:80px;height:80px;border-radius:50%;background:var(--bg2);border: 3px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:28px;color:var(--cyan);margin:0 auto 16px;box-shadow:0 0 20px var(--cyan-bg);}
+.respond-hero h2{font-family:'Fraunces',serif;font-size:1.8rem;letter-spacing:-0.02em;margin-bottom:8px;text-transform:uppercase;}
+.respond-hero p{font-size:15px;color:var(--text2);line-height:1.7;max-width:440px;margin:0 auto;}
+.respond-q{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:16px;}
+.rq-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;}
+.rq-text{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:16px;font-weight:600;}
 
-/* FORM FIELDS */
-.form-input-group {display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 5px;}
-.form-input-group input {width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 11px 13px; color: var(--text); font-size: 13px; font-family: 'Nunito', sans-serif; outline: none; transition: all 0.2s;}
-.form-input-group input.error-ring { border: 1px solid var(--coral); }
-.form-input-group input:focus {border-color: var(--cyan);}
+/* FORMS */
+.form-input-group {display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px;}
+.form-input-group input {width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 14px 16px; color: var(--text); font-size: 14px; font-family: 'Nunito', sans-serif; outline: none; transition: all 0.25s;}
+.form-input-group input.error-ring { border: 1px solid var(--coral); box-shadow: 0 0 0 3px var(--coral-bg);}
+.form-input-group input:focus {border-color: var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg);}
 .form-input-group input::placeholder {color: var(--text3);}
 .form-input-group .full-width {grid-column: 1 / -1;}
 
-textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:11px 13px;color:var(--text);font-size:13px;font-family:'Nunito',sans-serif;outline:none;resize:none;line-height:1.7;transition:all 0.2s;}
-textarea.error-ring { border: 1px solid var(--coral); }
-textarea:focus{border-color:var(--cyan);outline:none;}
+textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;color:var(--text);font-size:14px;font-family:'Nunito',sans-serif;outline:none;resize:vertical;line-height:1.7;transition:all 0.25s;min-height:100px;}
+textarea.error-ring { border: 1px solid var(--coral); box-shadow: 0 0 0 3px var(--coral-bg); }
+textarea:focus{border-color:var(--cyan);box-shadow: 0 0 0 3px var(--cyan-bg);}
 textarea::placeholder{color:var(--text3);}
-.error-text { color: var(--coral); font-size: 11px; font-weight: 700; margin-top: 5px; display: none; }
+.error-text { color: var(--coral); font-size: 12px; font-weight: 700; margin-top: 8px; display: none; }
  
-/* SUCCESS */
-.success-wrap{text-align:center;padding:56px 24px;animation:fadeUp 0.35s ease;}
-.success-icon{font-size:52px;margin-bottom:18px;color:var(--cyan);}
-.success-wrap h3{font-family:'Fraunces',serif;font-size:1.9rem;margin-bottom:10px;text-transform:uppercase;}
-.success-wrap p{font-size:13px;color:var(--text2);line-height:1.75;max-width:340px;margin:0 auto 24px;}
+/* SUCCESS STATES */
+.success-wrap{text-align:center;padding:64px 24px;animation:fadeUp 0.4s ease;}
+.success-icon{font-size:64px;margin-bottom:24px;color:var(--cyan);filter:drop-shadow(0 0 20px var(--cyan-bg));}
+.success-wrap h3{font-family:'Fraunces',serif;font-size:2.2rem;margin-bottom:12px;text-transform:uppercase;}
+.success-wrap p{font-size:15px;color:var(--text2);line-height:1.8;max-width:400px;margin:0 auto 32px;}
  
 /* TOAST */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg2);color:var(--cyan);border: 1px solid var(--cyan);border-radius:100px;padding:11px 22px;font-size:13px;font-weight:700;z-index:500;transition:transform 0.35s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;}
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--cyan);color:var(--bg);border-radius:100px;padding:12px 28px;font-size:14px;font-weight:800;z-index:1000;transition:transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);box-shadow:0 10px 30px rgba(0,229,255,0.3);white-space:nowrap;}
 .toast.show{transform:translateX(-50%) translateY(0);}
  
-@media(max-width:620px){
- .split-slide{grid-template-columns:1fr;}
- .metrics-grid{grid-template-columns:1fr;}
- .biz-model-grid{grid-template-columns:1fr;}
+@media(max-width:768px){
+ .module-grid{grid-template-columns:1fr;}
  .nav-center{display:none;}
  .info-grid{grid-template-columns:1fr;}
  .form-input-group{grid-template-columns:1fr;}
+ .insight-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
  
-<div class="toast" id="toast">✦</div>
+<div class="toast" id="toast">✦ Notification</div>
  
 <!-- NAV -->
 <nav>
   <a class="logo" onclick="show('home')">sp<span>ark</span><span class="logo-star">✦</span></a>
   <div class="nav-center">
-    <button class="ntab pitch-tab active" onclick="show('home')">🦈 Pitch Deck</button>
-    <button class="ntab" onclick="show('s1-profile')">📖 Profile Demo</button>
-    <button class="ntab" onclick="show('s1-journal')">✍️ Journal Demo</button>
-    <button class="ntab" onclick="show('s2-feedback')">🪞 Feedback Demo</button>
-    <button class="ntab" onclick="show('respond')" style="color:var(--cyan);">💌 Respond Demo</button>
+    <button class="ntab active" onclick="show('home')">Dashboard</button>
+    <button class="ntab" onclick="show('s1-profile')">📖 Profile</button>
+    <button class="ntab" onclick="show('s1-journal')">✍️ Journal</button>
+    <button class="ntab" onclick="show('s2-feedback')">🪞 Feedback</button>
   </div>
   <div class="avatar-nav dyn-initials" onclick="show('s1-profile')">E</div>
 </nav>
  
-<!-- ═══ INVESTOR PITCH (HOME) ═══ -->
+<!-- ═══ HOME / DASHBOARD ═══ -->
 <div class="screen active" id="screen-home">
-  <div class="pitch-hero">
-    <div class="hero-badge-gold">🦈 Live Shark Tank Pitch</div>
-    <h1>Hello Sharks.<br><em>We are Spark.</em></h1>
-    <div class="the-ask">Seeking $250,000 for 5% Equity</div>
-    <p>Social media has become performance art. Traditional journaling is a lonely echo chamber. We are building the world's first platform that bridges private introspection with authentic, 360° anonymous feedback.</p>
-    <div class="pitch-btns">
-      <button class="btn btn-gold" onclick="show('s1-profile')">Launch App Demo →</button>
-      <button class="btn btn-outline" onclick="document.getElementById('deck-start').scrollIntoView({behavior:'smooth'})">View the Deck ↓</button>
+  <div class="hero">
+    <div class="hero-badge"><div class="badge-blink"></div>Beta Access v1.0</div>
+    <h1>Know yourself.<br><em>See yourself.</em></h1>
+    <p>A private space to document your life, paired with a powerful tool to collect honest, anonymous perspectives from the people who know you best. Build your authentic portrait.</p>
+    <div class="hero-btns">
+      <button class="btn btn-primary" onclick="show('s1-profile')">Launch Workspace →</button>
+      <button class="btn btn-outline" onclick="show('respond')">View Guest Experience</button>
     </div>
   </div>
  
-  <div class="pitch-deck-wrap" id="deck-start">
+  <div class="module-grid">
+    <div class="module-card s1" onclick="show('s1-profile')">
+      <div class="mc-icon">📖</div>
+      <div class="mc-num">Module 1</div>
+      <h3>The Private Archive</h3>
+      <p>Your profile, your story, your daily journal. Document what happens, how you feel, and what matters in a beautifully structured environment.</p>
+      <div class="mc-features">
+        <div class="mc-feat">Living personal bio & identity tags</div>
+        <div class="mc-feat">Rich daily journal entries</div>
+        <div class="mc-feat">Emotion tracking & life timeline</div>
+      </div>
+    </div>
     
-    <!-- Problem / Solution -->
-    <div class="deck-slide">
-      <div class="slide-label">The Market Gap</div>
-      <div class="slide-title">The Problem & The Solution</div>
-      <div class="split-slide">
-        <div class="problem-box">
-          <h3 style="color:var(--coral); font-family:'Fraunces',serif; font-size:1.4rem; margin-bottom:10px;">The Problem</h3>
-          <p style="font-size:13px; color:var(--text); line-height:1.6;">Gen Z is the most connected generation, yet the loneliest. Self-perception is skewed by social media likes. Existing mental health & journaling apps feel isolating and lack external validation.</p>
-        </div>
-        <div class="solution-box">
-          <h3 style="color:var(--mint); font-family:'Fraunces',serif; font-size:1.4rem; margin-bottom:10px;">The Solution: Spark</h3>
-          <p style="font-size:13px; color:var(--bg); line-height:1.6; font-weight:600;">A digital mirror. Users maintain a private, structured journal (Section 1), while securely requesting anonymous, guided feedback from trusted peers (Section 2) to build a holistic identity.</p>
-        </div>
+    <div class="module-card s2" onclick="show('s2-feedback')">
+      <div class="mc-icon">🪞</div>
+      <div class="mc-num">Module 2</div>
+      <h3>The 360° Mirror</h3>
+      <p>Send secure, frictionless requests to your inner circle. Collect profound, anonymous feedback that helps you understand how the world sees you.</p>
+      <div class="mc-features">
+        <div class="mc-feat">Zero-friction guest responding</div>
+        <div class="mc-feat">Anonymous honest feedback collection</div>
+        <div class="mc-feat">AI-clustered personality themes</div>
       </div>
     </div>
-
-    <!-- Traction -->
-    <div class="deck-slide">
-      <div class="slide-label">Why Now?</div>
-      <div class="slide-title">Traction & Growth</div>
-      <p style="color:var(--text2); font-size:14px;">In just our 12-week closed beta on college campuses, the viral loop of "sending Sparks" has driven completely organic growth.</p>
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <div class="m-value">14.2k</div>
-          <div class="m-label">Active Users</div>
-        </div>
-        <div class="metric-card">
-          <div class="m-value">68%</div>
-          <div class="m-label">Weekly Retention</div>
-        </div>
-        <div class="metric-card">
-          <div class="m-value">$0.12</div>
-          <div class="m-label">Blended CAC</div>
-        </div>
-        <div class="metric-card">
-          <div class="m-value">4.2</div>
-          <div class="m-label">K-Factor (Virality)</div>
-        </div>
-        <div class="metric-card">
-          <div class="m-value">85k+</div>
-          <div class="m-label">Sparks Sent</div>
-        </div>
-        <div class="metric-card">
-          <div class="m-value">12 mins</div>
-          <div class="m-label">Avg Daily Session</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Business Model -->
-    <div class="deck-slide">
-      <div class="slide-label">Monetization</div>
-      <div class="slide-title">The Business Model</div>
-      <div class="biz-model-grid">
-        <div class="tier-card">
-          <h4 style="font-family:'Fraunces',serif; font-size:1.2rem; color:var(--text);">Spark Basic</h4>
-          <div class="tier-price">Free</div>
-          <ul style="font-size:13px; color:var(--text2); line-height:1.8; margin-left:15px;">
-            <li>Basic Profile & Journaling</li>
-            <li>Send up to 5 Feedback Sparks/mo</li>
-            <li>Standard Insights</li>
-          </ul>
-        </div>
-        <div class="tier-card pro">
-          <div style="position:absolute; top:-12px; right:20px; background:var(--cyan); color:var(--bg); font-size:10px; font-weight:800; padding:4px 10px; border-radius:100px; text-transform:uppercase;">Most Popular</div>
-          <h4 style="font-family:'Fraunces',serif; font-size:1.2rem; color:var(--cyan);">Spark Premium</h4>
-          <div class="tier-price" style="color:var(--cyan);">$4.99<span>/mo</span></div>
-          <ul style="font-size:13px; color:var(--text); line-height:1.8; margin-left:15px;">
-            <li>Unlimited Journal Entries</li>
-            <li>Unlimited Feedback Sparks</li>
-            <li>AI-powered Theme Clustering</li>
-            <li>Export Personal Identity PDF</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div style="text-align:center; padding: 40px 0;">
-      <h2 style="font-family:'Fraunces',serif; font-size:2rem; margin-bottom:15px;">Sharks, who wants to spark a movement?</h2>
-      <button class="btn btn-gold" style="font-size:16px; padding: 15px 30px;" onclick="show('s1-profile')">Step into the Product Demo →</button>
-    </div>
-
   </div>
+  
+  <div class="home-foot">Secure & Private · Your Data is Yours · Spark Inc.</div>
 </div>
  
-<!-- ═══ SECTION 1 — PROFILE DEMO ═══ -->
+<!-- ═══ SECTION 1 — PROFILE ═══ -->
 <div class="screen" id="screen-s1-profile">
   <div class="wrap">
-    <div class="section-tag" style="color:var(--cyan)">§ App Demo — Section 1</div>
-    <div class="page-title">Your Profile</div>
-    <div class="page-sub">This is the foundation of your Spark. The more honest you are here, the more powerful your self-portrait becomes over time.</div>
+    <div class="section-tag">Module 1 — The Archive</div>
+    <div class="page-title">Identity Profile</div>
+    <div class="page-sub">Establish the foundation of your Spark. Be radically honest here—this is your private baseline.</div>
  
     <div class="profile-hero">
       <div class="avatar-lg dyn-initials">E</div>
@@ -398,84 +330,82 @@ textarea::placeholder{color:var(--text3);}
     </div>
  
     <div class="card">
-      <div class="card-label">Basic Info</div>
+      <div class="card-label">Core Demographics</div>
       <div class="info-grid">
         <div class="info-field"><label>Full Name</label><input type="text" id="profile-name-input" value="Eshwar M" oninput="updateNamesAcrossApp()"/></div>
         <div class="info-field"><label>Age</label><input type="text" value="21"/></div>
-        <div class="info-field"><label>City</label><input type="text" value="Bengaluru"/></div>
-        <div class="info-field"><label>Currently</label><input type="text" value="Design student @ NIFT"/></div>
-        <div class="info-field full"><label>About me — in my own words</label>
-          <textarea rows="3" style="resize:none">Design student who loves visual storytelling, making people feel heard, and figuring out who I actually am. Currently exploring branding and UX.</textarea></div>
+        <div class="info-field"><label>Location</label><input type="text" value="Bengaluru, India"/></div>
+        <div class="info-field"><label>Current Focus</label><input type="text" value="Design student @ NIFT"/></div>
+        <div class="info-field full"><label>Personal Thesis</label>
+          <textarea rows="3">Design student who loves visual storytelling, making people feel heard, and figuring out who I actually am. Currently exploring branding and UX.</textarea></div>
       </div>
     </div>
  
     <div class="card">
-      <div class="card-label">What I'm into</div>
+      <div class="card-label">Trajectory</div>
       <div class="info-grid">
-        <div class="info-field"><label>Skills I have</label><input type="text" value="Figma, Illustration, Writing"/></div>
-        <div class="info-field"><label>Skills I'm learning</label><input type="text" value="Motion design, Photography"/></div>
-        <div class="info-field full"><label>What I want to be known for someday</label>
+        <div class="info-field"><label>Current Stack / Skills</label><input type="text" value="Figma, Illustration, Writing"/></div>
+        <div class="info-field"><label>Active Learning</label><input type="text" value="Motion design, Photography"/></div>
+        <div class="info-field full"><label>Long-term Reputation Goal</label>
           <input type="text" value="A designer who tells real human stories through beautiful work"/></div>
       </div>
     </div>
  
     <div class="card">
-      <div class="card-label">Values & Personality</div>
+      <div class="card-label">Internal Compass</div>
       <div class="info-grid">
-        <div class="info-field"><label>3 words that describe me</label><input type="text" value="Curious, warm, overthinker"/></div>
-        <div class="info-field"><label>I'm energised by</label><input type="text" value="Creative problems, deep convos"/></div>
-        <div class="info-field full"><label>One thing I'm actively working on</label>
+        <div class="info-field"><label>Defining Traits</label><input type="text" value="Curious, warm, overthinker"/></div>
+        <div class="info-field"><label>Energy Sources</label><input type="text" value="Creative problems, deep convos"/></div>
+        <div class="info-field full"><label>Active Area of Friction</label>
           <input type="text" value="Asking for help instead of doing everything alone"/></div>
       </div>
     </div>
  
-    <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
-      <button class="btn btn-primary" onclick="toast('✦ Profile saved!')">Save profile</button>
-      <button class="btn btn-outline" onclick="show('s1-journal')">Go to my Journal →</button>
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="toast('✦ Identity Profile synced successfully.')">Sync Profile</button>
+      <button class="btn btn-outline" onclick="show('s1-journal')">Open Journal →</button>
     </div>
   </div>
 </div>
  
-<!-- ═══ SECTION 1 — JOURNAL DEMO ═══ -->
+<!-- ═══ SECTION 1 — JOURNAL ═══ -->
 <div class="screen" id="screen-s1-journal">
   <div class="wrap">
-    <div class="section-tag" style="color:var(--cyan)">§ App Demo — Section 1</div>
+    <div class="section-tag">Module 1 — The Archive</div>
     <div class="journal-header">
       <div>
-        <div class="page-title">Your Journal</div>
-        <div class="date-display">Wednesday, 13 May 2026</div>
+        <div class="page-title">Life Journal</div>
+        <div class="date-display" id="current-date">Loading date...</div>
       </div>
-      <button class="btn btn-primary btn-sm" onclick="openComposer()">+ New entry</button>
+      <button class="btn btn-primary" onclick="openComposer()">+ Draft Entry</button>
     </div>
-    <div class="page-sub" style="margin-top:6px;">Document what happens. Big days, small moments, quiet realisations. This is your life archive — written by you, for you.</div>
+    <div class="page-sub" style="margin-top:6px;">Record events, process emotions, and track your evolution over time.</div>
  
     <!-- COMPOSER -->
     <div class="entry-composer" id="composer" style="display:none">
       <div class="entry-type-tabs">
         <button class="etype active" onclick="setEType(this)">📅 Event</button>
         <button class="etype" onclick="setEType(this)">💭 Reflection</button>
-        <button class="etype" onclick="setEType(this)">🎯 Achievement</button>
-        <button class="etype" onclick="setEType(this)">😔 Struggle</button>
-        <button class="etype" onclick="setEType(this)">💡 Idea</button>
-        <button class="etype" onclick="setEType(this)">🌱 Growth moment</button>
+        <button class="etype" onclick="setEType(this)">🎯 Win</button>
+        <button class="etype" onclick="setEType(this)">😔 Friction</button>
+        <button class="etype" onclick="setEType(this)">💡 Insight</button>
       </div>
-      <input class="entry-title-input" id="etitle" type="text" placeholder="Give this moment a title..."/>
-      <textarea class="entry-body" id="ebody" rows="5" placeholder="Write what happened, how you felt, what you noticed... This is just for you."></textarea>
+      <input class="entry-title-input" id="etitle" type="text" placeholder="Entry title..."/>
+      <textarea class="entry-body" id="ebody" placeholder="Document the moment. Be specific and honest."></textarea>
       <div class="entry-footer">
         <div>
-          <div style="font-size:11px;font-weight:700;color:var(--text3);margin-bottom:5px;">How are you feeling?</div>
+          <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-bottom:8px;">Emotional State</div>
           <div class="mood-row">
-            <button class="mood-btn" onclick="setMood(this)">😊</button>
-            <button class="mood-btn" onclick="setMood(this)">😐</button>
-            <button class="mood-btn" onclick="setMood(this)">😔</button>
-            <button class="mood-btn" onclick="setMood(this)">🤩</button>
-            <button class="mood-btn" onclick="setMood(this)">😰</button>
-            <button class="mood-btn" onclick="setMood(this)">🥹</button>
+            <button class="mood-btn" onclick="setMood(this)">🟢</button>
+            <button class="mood-btn" onclick="setMood(this)">🟡</button>
+            <button class="mood-btn" onclick="setMood(this)">🟠</button>
+            <button class="mood-btn" onclick="setMood(this)">🔴</button>
+            <button class="mood-btn" onclick="setMood(this)">🔵</button>
           </div>
         </div>
-        <div style="display:flex;gap:7px;">
-          <button class="btn btn-outline btn-sm" onclick="closeComposer()">Cancel</button>
-          <button class="btn btn-primary btn-sm" onclick="saveEntry()">Save✦</button>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-outline btn-sm" onclick="closeComposer()">Discard</button>
+          <button class="btn btn-primary btn-sm" onclick="saveEntry()">Publish ✦</button>
         </div>
       </div>
     </div>
@@ -484,167 +414,169 @@ textarea::placeholder{color:var(--text3);}
     <div class="journal-timeline" id="entries-list">
       <div class="entry-card">
         <div class="entry-card-top">
-          <div class="entry-card-meta"><span class="tag-pill pill-mint" style="font-size:10px;">🎯 Achievement</span><span class="entry-date-sm">Today · 10:30am</span></div>
-          <span class="entry-mood">🤩</span>
+          <div class="entry-card-meta"><span class="tag-pill pill-mint">🎯 Win</span><span class="entry-date-sm">Earlier Today</span></div>
+          <span class="entry-mood">🟢</span>
         </div>
-        <div class="entry-title">Got selected for the design internship!</div>
-        <div class="entry-preview">I've been waiting for this for 3 months. The email came in at 9am and I just stared at it for 5 minutes. I called mom first, then Arjun. It feels surreal but also like it was always going to happen.</div>
+        <div class="entry-title">Design Internship Secured</div>
+        <div class="entry-preview">I've been waiting for this for 3 months. The email came in at 9am and I just stared at it for 5 minutes. I called mom first, then Arjun. It feels surreal but also like the hard work finally materialized into something tangible.</div>
       </div>
     </div>
   </div>
 </div>
  
-<!-- ═══ SECTION 2 — FEEDBACK DEMO ═══ -->
+<!-- ═══ SECTION 2 — FEEDBACK ═══ -->
 <div class="screen" id="screen-s2-feedback">
   <div class="wrap">
-    <div class="section-tag" style="color:var(--cyan)">§ App Demo — Section 2</div>
-    <div class="page-title">360° Feedback</div>
-    <div class="page-sub">Ask the people who know you to answer 3 honest questions. No login needed on their end — just a link. Watch your real self emerge.</div>
+    <div class="section-tag">Module 2 — The Mirror</div>
+    <div class="page-title">Feedback Matrix</div>
+    <div class="page-sub">Distribute anonymous request links to your trusted circle. The responses will aggregate here to reveal your blind spots and core strengths.</div>
  
     <div class="feedback-tabs">
-      <button class="ftab active" onclick="setFTab(this,'ft-send')">Send requests</button>
-      <button class="ftab" onclick="setFTab(this,'ft-insights')">My insights</button>
+      <button class="ftab active" onclick="setFTab(this,'ft-send')">Distribution</button>
+      <button class="ftab" onclick="setFTab(this,'ft-insights')">Aggregated Insights</button>
     </div>
  
-    <!-- SEND -->
+    <!-- SEND TAB -->
     <div id="ft-send">
       <div class="q-showcase">
         <div class="q-block">
           <div class="q-icon qi1">🌟</div>
           <div>
-            <div class="q-label ql1">Question 1 · Strengths</div>
-            <div class="q-text">"What's something genuinely great you've noticed about me — something I might not see in myself?"</div>
-            <div class="q-hint">Surfaces the hidden strengths you've normalized about yourself</div>
+            <div class="q-label ql1">Vector 1 · Hidden Strengths</div>
+            <div class="q-text">"What is a genuine strength I possess that I might be underestimating?"</div>
+            <div class="q-hint">Identifies normalized competencies.</div>
           </div>
         </div>
         <div class="q-block">
           <div class="q-icon qi2">🌱</div>
           <div>
-            <div class="q-label ql2">Question 2 · Growth</div>
-            <div class="q-text">"Where do you think I have real room to grow or improve?"</div>
-            <div class="q-hint">Honest and kind — real talk from someone who actually knows you</div>
+            <div class="q-label ql2">Vector 2 · Growth Opportunities</div>
+            <div class="q-text">"Where is my greatest area for improvement or growth?"</div>
+            <div class="q-hint">Surfaces constructive friction.</div>
           </div>
         </div>
         <div class="q-block">
           <div class="q-icon qi3">⚡</div>
           <div>
-            <div class="q-label ql3">Question 3 · Your zone</div>
-            <div class="q-text">"Where do you see my strengths being most powerful — what feels like my zone?"</div>
-            <div class="q-hint">Helps you find where to focus your energy and attention</div>
+            <div class="q-label ql3">Vector 3 · Flow State</div>
+            <div class="q-text">"In what environments or scenarios do I appear most powerful and aligned?"</div>
+            <div class="q-hint">Maps optimal operational zones.</div>
           </div>
         </div>
       </div>
  
       <div class="invite-flow" id="send-form-ui">
-        <div class="card-label" style="margin-bottom:11px;">Who knows you well enough to be honest?</div>
+        <div class="card-label" style="margin-bottom:16px;">Select Recipients</div>
         <div class="contacts-grid">
-          <div class="contact-chip" onclick="toggleC(this,'Mom')"><div class="chip-av" style="background:var(--mint); color:var(--bg)">M</div>Mom</div>
-          <div class="contact-chip" onclick="toggleC(this,'Dad')"><div class="chip-av" style="background:var(--cyan); color:var(--bg)">D</div>Dad</div>
-          <div class="contact-chip" onclick="toggleC(this,'Arjun (arjun@test.com)')"><div class="chip-av" style="background:var(--sky); color:var(--bg)">A</div>Arjun</div>
+          <div class="contact-chip" onclick="toggleC(this,'Mom')"><div class="chip-av" style="background:var(--mint);">M</div>Mom</div>
+          <div class="contact-chip" onclick="toggleC(this,'Dad')"><div class="chip-av" style="background:var(--cyan);">D</div>Dad</div>
+          <div class="contact-chip" onclick="toggleC(this,'Arjun (arjun@test.com)')"><div class="chip-av" style="background:var(--sky);">A</div>Arjun</div>
         </div>
         <div class="selected-row" id="sel-row"></div>
         <div class="add-row">
-          <input type="text" id="new-name" placeholder="Add someone new (Name)"/>
-          <input type="email" id="new-ct" placeholder="Their Email" style="max-width:180px;"/>
-          <button class="btn-add" onclick="addPerson()">Add</button>
+          <input type="text" id="new-name" placeholder="Name"/>
+          <input type="email" id="new-ct" placeholder="Email Address" style="max-width:220px;"/>
+          <button class="btn-add" onclick="addPerson()">+ Add</button>
         </div>
         
-        <div style="display:flex; gap:10px; margin-top:16px;">
-          <button class="btn-full" id="send-btn" onclick="sendSparks()" disabled style="flex:1;">Open Email App ✦</button>
-          <button class="btn-full" id="copy-btn" onclick="copyInviteLink()" style="flex:1; background: var(--violet); color: var(--text);">Copy Invite Link ✦</button>
+        <div style="display:flex; gap:12px; margin-top:24px;">
+          <button class="btn-full" id="send-btn" onclick="sendSparks()" disabled style="flex:1;">Launch via Email ✦</button>
+          <button class="btn-full" id="copy-btn" onclick="copyInviteLink()" style="flex:1; background: var(--violet); color: #fff;">Copy Secure Link 🔗</button>
         </div>
       </div>
  
       <div class="success-wrap" id="send-success" style="display:none">
         <div class="success-icon">✦</div>
-       <h3>Sparks prepared!</h3>
-        <p>Your invite link is ready. Send it to your people and wait for the honest feedback to roll in.</p>
-        <button class="btn btn-primary" onclick="show('s2-feedback');switchToInsights()">See my insights →</button>
+       <h3>Deployment Active</h3>
+        <p>Your secure link is generated. Await incoming responses to build your insight matrix.</p>
+        <button class="btn btn-primary" onclick="show('s2-feedback');switchToInsights()">View Dashboard →</button>
       </div>
     </div>
  
-    <!-- INSIGHTS -->
+    <!-- INSIGHTS TAB -->
     <div id="ft-insights" style="display:none">
       <div class="insight-grid">
-        <div class="insight-box"><div class="insight-num" id="stat-responses">0</div><div class="insight-lbl">Responses</div></div>
-        <div class="insight-box"><div class="insight-num" id="stat-people">0</div><div class="insight-lbl">People</div></div>
-        <div class="insight-box"><div class="insight-num">4</div><div class="insight-lbl">Themes</div></div>
+        <div class="insight-box"><div class="insight-num" id="stat-responses">0</div><div class="insight-lbl">Data Points</div></div>
+        <div class="insight-box"><div class="insight-num" id="stat-people">0</div><div class="insight-lbl">Contributors</div></div>
+        <div class="insight-box"><div class="insight-num">4</div><div class="insight-lbl">Core Themes</div></div>
       </div>
-      <div class="card" style="margin-bottom:12px;">
-        <div class="card-label">AI Themes your people see in you</div>
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-label">Machine-Generated Theme Clusters</div>
         <div class="theme-row"><span class="theme-name">Creativity</span><div class="theme-track"><div class="theme-bar" style="width:82%;background:var(--cyan-l);"></div></div><span class="theme-pct">82%</span></div>
         <div class="theme-row"><span class="theme-name">Empathy</span><div class="theme-track"><div class="theme-bar" style="width:71%;background:var(--mint);"></div></div><span class="theme-pct">71%</span></div>
         <div class="theme-row"><span class="theme-name">Leadership</span><div class="theme-track"><div class="theme-bar" style="width:54%;background:var(--violet);"></div></div><span class="theme-pct">54%</span></div>
         <div class="theme-row"><span class="theme-name">Focus</span><div class="theme-track"><div class="theme-bar" style="width:38%;background:var(--coral);"></div></div><span class="theme-pct">38%</span></div>
       </div>
       <div class="card">
-        <div class="card-label">What they said</div>
-        <!-- This feed is powered by localStorage -->
+        <div class="card-label">Raw Qualitative Data</div>
+        <!-- LocalStorage Feed -->
         <div id="dashboard-feed">
-           <div id="empty-state" style="font-size:12px;color:var(--text3);text-align:center;padding:20px;">No responses yet. Send some sparks!</div>
+           <div id="empty-state" style="font-size:13px;color:var(--text3);text-align:center;padding:32px;">Awaiting incoming data. Distribute links to populate.</div>
         </div>
       </div>
     </div>
   </div>
 </div>
  
-<!-- ═══ RESPONDENT VIEW DEMO ═══ -->
+<!-- ═══ RESPONDENT (GUEST) VIEW ═══ -->
 <div class="screen" id="screen-respond">
-  <div class="wrap" style="max-width:560px;">
+  <div class="wrap" style="max-width:600px;">
     <div class="respond-hero">
       <div class="respond-avatar dyn-initials">E</div>
-      <h2><span class="dyn-firstname" style="text-transform:uppercase;">ESHWAR</span> IS COLLECTING HIS SPARK</h2>
-      <p>3 quick questions. Your answers are completely anonymous. Be real — honesty here helps more than a compliment ever could.</p>
+      <h2><span class="dyn-firstname" style="text-transform:uppercase;">ESHWAR</span>'S SPARK PROTOCOL</h2>
+      <p>You have been invited to provide anonymous feedback. Your radical candor is required. This data goes directly to <span class="dyn-firstname">Eshwar</span>'s private dashboard.</p>
     </div>
  
     <form id="respond-form" action="https://formspree.io/f/xgodqnqw" method="POST" onsubmit="validateAndSubmit(event)" novalidate>
       
-      <!-- Demographic Fields -->
+      <!-- Meta Details -->
       <div class="respond-q" style="background: var(--bg3); border-color: var(--cyan);">
-        <div class="rq-label ql2">About You</div>
-        <div class="rq-text">Please provide your details so <span class="dyn-firstname">Eshwar</span> can organize these responses.</div>
+        <div class="rq-label ql2">Submitter Metadata</div>
+        <div class="rq-text">Identify yourself to help <span class="dyn-firstname">Eshwar</span> contextualize this data (your specific answers remain unlinked and clustered).</div>
         <div class="form-input-group">
           <input type="text" id="resp-name" name="respondent_name" placeholder="Full Name *">
           <input type="email" id="resp-email" name="respondent_email" placeholder="Email Address *">
-          <input type="text" id="resp-city" name="respondent_city" placeholder="City *">
-          <input type="text" id="resp-country" name="respondent_country" placeholder="Country *">
-          <input class="full-width" id="resp-work" type="text" name="respondent_workplace" placeholder="Current Workplace / School *">
+          <input type="text" id="resp-city" name="respondent_city" placeholder="Location *">
+          <input type="text" id="resp-country" name="respondent_country" placeholder="Relation *">
+          <input class="full-width" id="resp-work" type="text" name="respondent_workplace" placeholder="Current Organization / Affiliation *">
         </div>
-        <div id="demo-error" class="error-text">Please fill in all About You fields.</div>
+        <div id="demo-error" class="error-text">Incomplete metadata fields detected.</div>
       </div>
 
-      <!-- Survey Questions -->
+      <!-- Protocol Questions -->
       <div class="respond-q">
-        <div class="rq-label ql1">Question 1 of 3 · Strengths</div>
-        <div class="rq-text">"What's something genuinely great you've noticed about <span class="dyn-firstname">Eshwar</span> — something he might not see in himself?"</div>
-        <textarea id="ans-q1" name="q1" rows="4" placeholder="Be specific — the more real, the more it helps... *"></textarea>
+        <div class="rq-label ql1">Vector 1 · Hidden Strengths</div>
+        <div class="rq-text">"What is a genuine strength you've observed in <span class="dyn-firstname">Eshwar</span> that he might underappreciate?"</div>
+        <textarea id="ans-q1" name="q1" placeholder="Provide specific examples... *"></textarea>
       </div>
       <div class="respond-q">
-        <div class="rq-label ql2">Question 2 of 3 · Growth</div>
-        <div class="rq-text">"Where do you think <span class="dyn-firstname">Eshwar</span> has real room to grow or improve?"</div>
-        <textarea id="ans-q2" name="q2" rows="4" placeholder="Honest and kind — he asked because he genuinely wants to know... *"></textarea>
+        <div class="rq-label ql2">Vector 2 · Growth Opportunities</div>
+        <div class="rq-text">"Where does <span class="dyn-firstname">Eshwar</span> have the highest leverage for improvement?"</div>
+        <textarea id="ans-q2" name="q2" placeholder="Maintain constructive intent... *"></textarea>
       </div>
       <div class="respond-q">
-        <div class="rq-label ql3">Question 3 of 3 · Her zone</div>
-        <div class="rq-text">"Where do you see <span class="dyn-firstname">Eshwar</span>'s strengths being most powerful — what feels like his zone?"</div>
-        <textarea id="ans-q3" name="q3" rows="4" placeholder="Think about the moments when he seemed most alive or in his element... *"></textarea>
-        <div id="q-error" class="error-text">Please answer all 3 questions.</div>
+        <div class="rq-label ql3">Vector 3 · Flow State</div>
+        <div class="rq-text">"When is <span class="dyn-firstname">Eshwar</span> operating in his absolute optimal zone?"</div>
+        <textarea id="ans-q3" name="q3" placeholder="Describe the environment or context... *"></textarea>
+        <div id="q-error" class="error-text">All vectors require input.</div>
       </div>
       
-      <button type="submit" class="btn-full" id="submit-btn">Submit my answers ✦</button>
-      <p style="text-align:center;font-size:11px;color:var(--text3);margin-top:12px;">Data securely sent to <span class="dyn-firstname">Eshwar</span> · No login needed</p>
+      <button type="submit" class="btn-full" id="submit-btn" style="padding: 20px; font-size: 16px;">Transmit Protocol ✦</button>
+      <p style="text-align:center;font-size:12px;color:var(--text3);margin-top:16px;">End-to-end encrypted · Zero auth required</p>
     </form>
  
     <div class="success-wrap" id="respond-success" style="display:none">
-      <div class="success-icon">🥹</div>
-      <h3>You're a good human.</h3>
-      <p>Your honest answers will help <span class="dyn-firstname">Eshwar</span> see himself more clearly. That's a real gift.</p>
-      <button class="btn btn-outline" style="margin-top:16px;" onclick="show('home')">Back to Pitch Deck →</button>
+      <div class="success-icon">✦</div>
+      <h3>Transmission Complete.</h3>
+      <p>Data successfully routed to <span class="dyn-firstname">Eshwar</span>'s matrix. Your contribution is valuable.</p>
+      <button class="btn btn-outline" style="margin-top:24px;" onclick="show('home')">Return to System Home</button>
     </div>
   </div>
 </div>
  
 <script>
+// System Initialization
+document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 const sel = new Set();
  
 function show(id) {
@@ -652,23 +584,23 @@ function show(id) {
  document.getElementById('screen-'+id).classList.add('active');
   const map={home:0,'s1-profile':1,'s1-journal':2,'s2-feedback':3,respond:4};
  document.querySelectorAll('.ntab').forEach((t,i)=>t.classList.toggle('active',i===map[id]));
- window.scrollTo(0,0);
+ window.scrollTo({top: 0, behavior: 'smooth'});
  if(id==='s2-feedback') resetFeed();
 }
  
-function toast(msg,dur=3000){
+function toast(msg,dur=3500){
   const t=document.getElementById('toast');
   t.textContent=msg; t.classList.add('show');
  setTimeout(()=>t.classList.remove('show'),dur);
 }
 
-// Global Name Update Logic
+// Global Identity Variables
 function updateNamesAcrossApp() {
   const inputEl = document.getElementById('profile-name-input');
   let fullName = inputEl.value.trim();
-  if (!fullName) fullName = "Your Name";
+  if (!fullName) fullName = "User";
   
-  const firstName = fullName.split(' ')[0] || "You";
+  const firstName = fullName.split(' ')[0] || "User";
   
   const parts = fullName.split(' ');
   let initials = parts[0].charAt(0).toUpperCase();
@@ -681,7 +613,7 @@ function updateNamesAcrossApp() {
   document.querySelectorAll('.dyn-initials').forEach(el => el.textContent = initials);
 }
  
-// Journal Logic 
+// Journal Module Logic
 function openComposer(){ document.getElementById('composer').style.display='block'; document.getElementById('etitle').focus(); }
 function closeComposer(){ document.getElementById('composer').style.display='none'; document.getElementById('etitle').value=''; document.getElementById('ebody').value=''; }
 function setEType(el){document.querySelectorAll('.etype').forEach(e=>e.classList.remove('active'));el.classList.add('active');}
@@ -689,17 +621,17 @@ function setMood(el){document.querySelectorAll('.mood-btn').forEach(b=>b.classLi
 function saveEntry(){
   const title=document.getElementById('etitle').value.trim();
   const body=document.getElementById('ebody').value.trim();
-  if(!title&&!body) return toast('Write something first ✏️');
+  if(!title&&!body) return toast('Input required to publish.');
   const type=document.querySelector('.etype.active')?.textContent.trim()||'📅 Event';
-  const mood=document.querySelector('.mood-btn.selected')?.textContent||'😊';
+  const mood=document.querySelector('.mood-btn.selected')?.textContent||'🟢';
   const card=document.createElement('div'); card.className='entry-card';
-  card.innerHTML=`<div class="entry-card-top"><div class="entry-card-meta"><span class="tag-pill pill-cyan" style="font-size:10px">${type}</span><span class="entry-date-sm">Just now</span></div><span class="entry-mood">${mood}</span></div><div class="entry-title">${title||'Untitled'}</div><div class="entry-preview">${body||'...'}</div>`;
+  card.innerHTML=`<div class="entry-card-top"><div class="entry-card-meta"><span class="tag-pill pill-cyan">${type}</span><span class="entry-date-sm">Just now</span></div><span class="entry-mood">${mood}</span></div><div class="entry-title">${title||'Untitled'}</div><div class="entry-preview">${body||'...'}</div>`;
   const list=document.getElementById('entries-list');
   list.insertBefore(card,list.firstChild);
-  closeComposer(); toast('✦ Entry saved!');
+  closeComposer(); toast('✦ Entry recorded in Archive.');
 }
  
-// Feedback Sending Logic
+// Feedback Distribution Logic
 function toggleC(el,name){
  if(sel.has(name)){sel.delete(name);el.classList.remove('on');}
  else{sel.add(name);el.classList.add('on');}
@@ -741,14 +673,14 @@ function setFTab(el,id){
 
 function copyInviteLink() {
   const pageUrl = window.location.href;
-  const message = `Hey! I'm collecting honest feedback to build my personal 'Spark' profile. It's 3 quick anonymous questions. Could you take 2 minutes to fill it out here? \n\n${pageUrl}`;
+  const message = `Spark Protocol Initialization. \nI require your authentic feedback for my identity matrix. 3 secure questions. \n\nAccess here: ${pageUrl}`;
   
   navigator.clipboard.writeText(message).then(() => {
-    toast('✦ Invite link copied to clipboard! Paste it anywhere.');
+    toast('✦ Secure link copied to clipboard.');
     document.getElementById('send-form-ui').style.display='none';
     document.getElementById('send-success').style.display='block';
   }).catch(err => {
-    toast('❌ Could not copy link. Try again.');
+    toast('❌ Clipboard error.');
   });
 }
 
@@ -759,11 +691,11 @@ function sendSparks(){
   }).filter(email => email.includes('@'));
 
   if(extractedEmails.length > 0) {
-     const subject = encodeURIComponent("Can you help me build my Spark?");
-     const body = encodeURIComponent("Hey! I'm collecting feedback to build my personal Spark. It's 3 quick anonymous questions. Could you take 2 minutes to fill it out here: \n\n" + window.location.href);
+     const subject = encodeURIComponent("Spark Protocol Request");
+     const body = encodeURIComponent("I require your authentic feedback for my identity matrix. 3 secure questions. \n\nAccess here: " + window.location.href);
      window.location.href = `mailto:?bcc=${extractedEmails.join(',')}&subject=${subject}&body=${body}`;
   } else {
-     toast("Note: You didn't provide valid email addresses for the email app to use.");
+     toast("Alert: Invalid email parameters.");
   }
 
   document.getElementById('send-form-ui').style.display='none';
@@ -783,14 +715,13 @@ function resetFeed(){
  document.querySelectorAll('.ftab').forEach((t,i)=>t.classList.toggle('active',i===0));
 }
 
-// --- DATA SUBMISSION LOGIC (AJAX TO FORMSPREE) ---
+// Data Handling (Forms & LocalStorage)
 function validateAndSubmit(e) {
   e.preventDefault(); 
 
   const form = document.getElementById('respond-form');
   const btn = document.getElementById('submit-btn');
 
-  // Manual Validation
   const inputs = ['resp-name', 'resp-email', 'resp-city', 'resp-country', 'resp-work'];
   const textareas = ['ans-q1', 'ans-q2', 'ans-q3'];
   let isValid = true;
@@ -828,7 +759,7 @@ function validateAndSubmit(e) {
      return;
   }
 
-  btn.textContent = "Sending securely...";
+  btn.textContent = "Transmitting...";
   btn.disabled = true;
 
   const formData = new FormData(form);
@@ -845,20 +776,20 @@ function validateAndSubmit(e) {
       
       document.getElementById('respond-form').style.display='none';
       document.getElementById('respond-success').style.display='block';
-      toast('✦ Answers sent securely!');
+      toast('✦ Protocol transmitted successfully.');
     } else {
       response.json().then(data => {
         if (Object.hasOwn(data, 'errors')) {
           toast(data["errors"].map(error => error["message"]).join(", "));
         } else {
-          toast("Oops! There was a problem submitting your form");
+          toast("System Error during transmission.");
         }
       });
     }
   }).catch(error => {
-    toast("Oops! There was a problem submitting your form");
+    toast("System Error during transmission.");
   }).finally(() => {
-     btn.textContent = "Submit my answers ✦";
+     btn.textContent = "Transmit Protocol ✦";
      btn.disabled = false;
      form.reset();
   });
@@ -874,7 +805,7 @@ function saveLocalCopyForDashboard(formData) {
   const q2 = formData.get('q2').trim();
   const q3 = formData.get('q3').trim();
 
-  const existingData = JSON.parse(localStorage.getItem('sparkFeedbackData') || '[]');
+  const existingData = JSON.parse(localStorage.getItem('sparkDataMatrix') || '[]');
   
   existingData.push({
       name: respName,
@@ -884,12 +815,12 @@ function saveLocalCopyForDashboard(formData) {
       date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
   });
 
-  localStorage.setItem('sparkFeedbackData', JSON.stringify(existingData));
+  localStorage.setItem('sparkDataMatrix', JSON.stringify(existingData));
   renderDashboardFeed();
 }
 
 function renderDashboardFeed() {
-   const data = JSON.parse(localStorage.getItem('sparkFeedbackData') || '[]');
+   const data = JSON.parse(localStorage.getItem('sparkDataMatrix') || '[]');
    const feed = document.getElementById('dashboard-feed');
    
    document.getElementById('stat-responses').textContent = data.length * 3;
@@ -900,13 +831,12 @@ function renderDashboardFeed() {
    feed.innerHTML = '';
    for (let i = data.length - 1; i >= 0; i--) {
       const resp = data[i];
-      if(resp.strength) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><span class="tag-pill pill-mint" style="font-size:10px;">🌟 Strength</span><span class="resp-from">From ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.strength}</div></div>`;
-      if(resp.growth) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><span class="tag-pill pill-cyan" style="font-size:10px;">🌱 Growth</span><span class="resp-from">From ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.growth}</div></div>`;
-      if(resp.zone) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><span class="tag-pill pill-sky" style="font-size:10px;">⚡ Your zone</span><span class="resp-from">From ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.zone}</div></div>`;
+      if(resp.strength) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><div style="display:flex; gap:8px; align-items:center;"><span class="q-icon qi1" style="width:28px;height:28px;font-size:14px;border-radius:6px;">🌟</span><span style="font-size:11px; font-weight:800; color:var(--mint); text-transform:uppercase;">Vector 1</span></div><span class="resp-from">Node: ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.strength}</div></div>`;
+      if(resp.growth) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><div style="display:flex; gap:8px; align-items:center;"><span class="q-icon qi2" style="width:28px;height:28px;font-size:14px;border-radius:6px;">🌱</span><span style="font-size:11px; font-weight:800; color:var(--cyan); text-transform:uppercase;">Vector 2</span></div><span class="resp-from">Node: ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.growth}</div></div>`;
+      if(resp.zone) feed.innerHTML += `<div class="resp-card"><div class="resp-top"><div style="display:flex; gap:8px; align-items:center;"><span class="q-icon qi3" style="width:28px;height:28px;font-size:14px;border-radius:6px;">⚡</span><span style="font-size:11px; font-weight:800; color:var(--sky); text-transform:uppercase;">Vector 3</span></div><span class="resp-from">Node: ${resp.name} · ${resp.date}</span></div><div class="resp-text">${resp.zone}</div></div>`;
    }
 }
 
-// Initialize things on page load
 window.onload = function() {
     updateNamesAcrossApp();
     renderDashboardFeed(); 
